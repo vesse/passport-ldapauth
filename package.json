@@ -28,7 +28,8 @@
     "mocha": "1.9.x",
     "chai": "1.5.x",
     "ldapjs": "0.6.x",
-    "express": "3.1.x"
+    "express": "3.1.x",
+    "supertest": "0.5.x"
   },
 
   "scripts": {

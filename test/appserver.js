@@ -5,7 +5,23 @@ var express      = require('express'),
 var server = null;
 
 var init_passport = function(ldap_port) {
+  var opts = {
+    server: {
+      url: 'ldap://localhost' +  ldap_port.toString(),
+      adminDn: 'cn=root',
+      adminPassword: 'secret',
+      searchBase: 'ou=passport-ldapauth',
+      searchFilter: '(uid={{username}})'
+    }
+  };
 
+  passport.serializeUser(function(user, cb) {
+    return cb(null, 'dummykey');
+  });
+
+  passport.use(new LdapStrategy(opts, function(user, cb) {
+    return cb(null, user);
+  }));
 };
 
 exports.start = function(ldap_port, cb) {
@@ -15,6 +31,7 @@ exports.start = function(ldap_port, cb) {
   init_passport(ldap_port);
 
   app.configure(function() {
+    app.use(express.bodyParser());
     app.use(passport.initialize());
   });
 
@@ -22,7 +39,7 @@ exports.start = function(ldap_port, cb) {
     res.send({status: 'ok'});
   });
 
-  if (typeof cb === 'function') return cb();
+  if (typeof cb === 'function') return cb(app);
   return;
 };
 
