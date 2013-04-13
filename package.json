@@ -2,34 +2,32 @@
   "name": "passport-ldapauth",
   "description": "Passport authentication strategy for LDAP",
   "author": "Vesa Poikajärvi <vesa.poikajarvi@iki.fi>",
-  "keywords": ["ldap", "passport", "authentication", "ldapauth"],
-  "version": "0.0.2",
-
+  "keywords": [
+    "ldap",
+    "passport",
+    "authentication",
+    "ldapauth"
+  ],
+  "version": "0.0.3",
   "license": {
     "type": "MIT",
     "url": "https://github.com/vesse/passport-ldapauth/raw/master/LICENSE"
   },
-
   "main": "./lib/passport-ldapauth",
-
   "engines": {
     "node": ">=0.8.0"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/vesse/passport-ldapauth.git"
   },
-
   "bugs": {
     "url": "https://github.com/vesse/passport-ldapauth/issues"
   },
-
   "dependencies": {
     "ldapauth": "~2.0.0",
     "passport": "~0.1.1"
   },
-
   "devDependencies": {
     "mocha": "1.9.x",
     "chai": "1.5.x",
@@ -37,7 +35,6 @@
     "express": "3.1.x",
     "supertest": "0.5.x"
   },
-
   "scripts": {
     "test": "NODE_PATH=lib mocha test/*-test.js"
   }
