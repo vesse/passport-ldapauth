@@ -62,4 +62,20 @@ describe("LDAP authentication strategy", function() {
       .expect(200)
       .end(cb);
   });
+
+  it("should return unauthorized with invalid credentials", function(cb) {
+    request(expressapp)
+      .post('/login')
+      .send({username: 'valid', password: 'invvalid'})
+      .expect(401)
+      .end(cb);
+  });
+
+  it("should return unauthorized with non-existing user", function(cb) {
+    request(expressapp)
+      .post('/login')
+      .send({username: 'nonexisting', password: 'invvalid'})
+      .expect(401)
+      .end(cb);
+  });
 });

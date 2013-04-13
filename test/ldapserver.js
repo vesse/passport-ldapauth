@@ -1,14 +1,21 @@
 var ldap = require('ldapjs');
 
 authorize = function(req, res, next) {
-  if (!req.connection.ldap.bindDN.equals('cn=root')) {
-    return next(new ldap.InsufficientAccessRightsError());
-  }
   return next();
 };
 
 var SUFFIX = 'ou=passport-ldapauth';
 var server = null;
+
+db = {
+  'valid': {
+    dn: 'cn=valid, ou=passport-ldapauth',
+    attributes:  {
+      uid:  'valid',
+      name: 'Valid User'
+    }
+  }
+};
 
 exports.start = function(port, cb) {
   if (server) {
@@ -27,11 +34,20 @@ exports.start = function(port, cb) {
   });
 
   server.bind(SUFFIX, authorize, function(req, res, next) {
-
+    var dn = req.dn.toString();
+    if (dn !== 'cn=valid, ou=passport-ldapauth' || req.credentials !== 'valid') {
+      return next(new ldap.InvalidCredentialsError());
+    }
+    res.end();
+    return next();
   });
 
   server.search(SUFFIX, authorize, function(req, res, next) {
-
+    if (req.filter.value == 'valid') {
+      res.send(db['valid']);
+    }
+    res.end();
+    return next();
   });
 
   server.listen(port, function() {

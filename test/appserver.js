@@ -7,7 +7,7 @@ var server = null;
 var init_passport = function(ldap_port) {
   var opts = {
     server: {
-      url: 'ldap://localhost' +  ldap_port.toString(),
+      url: 'ldap://localhost:' +  ldap_port.toString(),
       adminDn: 'cn=root',
       adminPassword: 'secret',
       searchBase: 'ou=passport-ldapauth',
