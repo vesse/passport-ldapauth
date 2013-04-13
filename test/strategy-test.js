@@ -4,14 +4,24 @@ var should       = require('chai').Should(),
     ldapserver   = require('./ldapserver'),
     appserver    = require('./appserver');
 
-LDAP_PORT = 1389;
+var LDAP_PORT = 1389;
+
+var OPTS = {
+  server: {
+    url: 'ldap://localhost:' +  LDAP_PORT.toString(),
+    adminDn: 'cn=root',
+    adminPassword: 'secret',
+    searchBase: 'ou=passport-ldapauth',
+    searchFilter: '(uid={{username}})'
+  }
+};
 
 describe("LDAP authentication strategy", function() {
   var expressapp = null;
 
   before(function(cb) {
     ldapserver.start(LDAP_PORT, function() {
-      appserver.start(LDAP_PORT, function(app) {
+      appserver.start(OPTS, false, function(app) {
         expressapp = app;
         cb();
       });
@@ -26,7 +36,7 @@ describe("LDAP authentication strategy", function() {
     });
   });
 
-  it("should throw an error if verify callback is not provided", function(cb) {
+  it("should throw an error if no arguments not provided", function(cb) {
     (function() {
       new LdapStrategy();
     }).should.throw(Error);
@@ -44,6 +54,13 @@ describe("LDAP authentication strategy", function() {
     (function() {
       new LdapStrategy({}, function() {});
     }).should.throw(Error);
+    cb();
+  });
+
+  it("should initialize without a verify callback", function(cb) {
+    (function() {
+      new LdapStrategy(OPTS)
+    }).should.not.throw(Error);
     cb();
   });
 
@@ -78,4 +95,38 @@ describe("LDAP authentication strategy", function() {
       .expect(401)
       .end(cb);
   });
+
+  it("should authenticate without a verify callback", function(cb) {
+    appserver.start(OPTS, true, function(app) {
+      request(expressapp)
+        .post('/login')
+        .send({username: 'valid', password: 'valid'})
+        .expect(200)
+        .end(cb);
+    });
+  });
+
+  it("should reject invalid event without a verify callback", function(cb) {
+    appserver.start(OPTS, true, function(app) {
+      request(expressapp)
+        .post('/login')
+        .send({username: 'valid', password: 'invalid'})
+        .expect(401)
+        .end(cb);
+    });
+  });
+
+  it("should read given fields instead of defaults", function(cb) {
+    OPTS.usernameField = 'ldapuname';
+    OPTS.passwordField = 'ldappwd';
+
+    appserver.start(OPTS, true, function(app) {
+      request(expressapp)
+        .post('/login')
+        .send({ldapuname: 'valid', ldappwd: 'valid'})
+        .expect(200)
+        .end(cb);
+    });
+  });
+
 });
