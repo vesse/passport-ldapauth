@@ -4,31 +4,25 @@ var express      = require('express'),
 
 var server = null;
 
-var init_passport = function(ldap_port) {
-  var opts = {
-    server: {
-      url: 'ldap://localhost:' +  ldap_port.toString(),
-      adminDn: 'cn=root',
-      adminPassword: 'secret',
-      searchBase: 'ou=passport-ldapauth',
-      searchFilter: '(uid={{username}})'
-    }
-  };
-
+var init_passport = function(opts, no_callback) {
   passport.serializeUser(function(user, cb) {
     return cb(null, 'dummykey');
   });
 
-  passport.use(new LdapStrategy(opts, function(user, cb) {
-    return cb(null, user);
-  }));
+  if (no_callback) {
+    passport.use(new LdapStrategy(opts));
+  } else {
+    passport.use(new LdapStrategy(opts, function(user, cb) {
+      return cb(null, user);
+    }));
+  }
 };
 
-exports.start = function(ldap_port, cb) {
+exports.start = function(opts, no_callback, cb) {
 
   var app = express();
 
-  init_passport(ldap_port);
+  init_passport(opts, no_callback);
 
   app.configure(function() {
     app.use(express.bodyParser());
