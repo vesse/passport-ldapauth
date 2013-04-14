@@ -27,6 +27,7 @@ passport.use(new LdapStrategy({
     }
   },
   function(user, done) {
+    ...
     return done(null, user);
   }
 ));
@@ -48,7 +49,13 @@ npm install passport-ldapauth
     * `searchFilter`:  LDAP search filter, e.g. `(uid={{username}})`. Use literal `{{username}}` to have the given username used in the search.
 * `usernameField`: Field name where the username is found, defaults to _username_
 * `passwordField`: Field name where the password is found, defaults to _password_
-* `passReqToCallback`  when `true`, `req` is the first argument to the verify callback (default: `false`)
+* `passReqToCallback`: When `true`, `req` is the first argument to the verify callback (default: `false`):
+
+        passport.use(new LdapStrategy(..., function(req, user, done) {
+            ...
+            done(null, user);
+          }
+        ));
 
 ## Express example
 
