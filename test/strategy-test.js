@@ -125,8 +125,31 @@ describe("LDAP authentication strategy", function() {
         .post('/login')
         .send({ldapuname: 'valid', ldappwd: 'valid'})
         .expect(200)
-        .end(cb);
+        .end(function() {
+          delete OPTS.usernameField;
+          delete OPTS.passwordField;
+          cb();
+        });
     });
+  });
+
+  it("should pass request to verify callback if defined so", function(cb) {
+    OPTS.passReqToCallback = true;
+    var req = {body: {username: 'valid', password: 'valid', testkey: 1}},
+        s   = new LdapStrategy(OPTS, function(req, user, done) {
+          req.should.have.keys('body');
+          req.body.should.have.keys(['username', 'password', 'testkey']);
+          done(null, user);
+        });
+
+    s.success = function(user) {
+      should.exist(user);
+      user.uid.should.equal('valid');
+      delete OPTS.passReqToCallback;
+      cb();
+    };
+
+    s.authenticate(req);
   });
 
 });
