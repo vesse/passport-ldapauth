@@ -39,6 +39,10 @@ passport.use(new LdapStrategy({
 npm install passport-ldapauth
 ```
 
+## Status
+
+[![Build Status](https://travis-ci.org/vesse/passport-ldapauth.png)](https://travis-ci.org/vesse/passport-ldapauth)
+
 ## Configuration options
 
 * `server`: LDAP settings. These are passed directly to [node-ldapauth](https://github.com/trentm/node-ldapauth)
