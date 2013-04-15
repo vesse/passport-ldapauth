@@ -42,6 +42,7 @@ npm install passport-ldapauth
 ## Status
 
 [![Build Status](https://travis-ci.org/vesse/passport-ldapauth.png)](https://travis-ci.org/vesse/passport-ldapauth)
+[![Dependency Status](https://gemnasium.com/vesse/passport-ldapauth.png)](https://gemnasium.com/vesse/passport-ldapauth)
 
 ## Configuration options
 
