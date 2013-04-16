@@ -51,8 +51,9 @@ describe("LDAP authentication strategy", function() {
   });
 
   it("should throw an error if options are not accepted by ldapauth", function(cb) {
+    var s = new LdapStrategy({}, function() {});
     (function() {
-      new LdapStrategy({}, function() {});
+      s.authenticate({body: {username: 'valid', password: 'valid'}});
     }).should.throw(Error);
     cb();
   });
