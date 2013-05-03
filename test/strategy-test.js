@@ -14,6 +14,9 @@ var OPTS = {
     searchBase: 'ou=passport-ldapauth',
     searchFilter: '(uid={{username}})'
   }
+},
+TEST_OPTS = {
+  no_callback: false
 };
 
 describe("LDAP authentication strategy", function() {
@@ -21,7 +24,7 @@ describe("LDAP authentication strategy", function() {
 
   before(function(cb) {
     ldapserver.start(LDAP_PORT, function() {
-      appserver.start(OPTS, false, function(app) {
+      appserver.start(OPTS, TEST_OPTS, function(app) {
         expressapp = app;
         cb();
       });
@@ -98,7 +101,9 @@ describe("LDAP authentication strategy", function() {
   });
 
   it("should authenticate without a verify callback", function(cb) {
-    appserver.start(OPTS, true, function(app) {
+    TEST_OPTS.no_callback = true;
+    appserver.start(OPTS, TEST_OPTS, function(app) {
+      TEST_OPTS.no_callback = false
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
@@ -108,7 +113,9 @@ describe("LDAP authentication strategy", function() {
   });
 
   it("should reject invalid event without a verify callback", function(cb) {
-    appserver.start(OPTS, true, function(app) {
+    TEST_OPTS.no_callback = true;
+    appserver.start(OPTS, TEST_OPTS, function(app) {
+      TEST_OPTS.no_callback = false;
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'invalid'})
@@ -120,8 +127,9 @@ describe("LDAP authentication strategy", function() {
   it("should read given fields instead of defaults", function(cb) {
     OPTS.usernameField = 'ldapuname';
     OPTS.passwordField = 'ldappwd';
-
-    appserver.start(OPTS, true, function(app) {
+    OPTS.no_callback   = true;
+    appserver.start(OPTS, TEST_OPTS, function(app) {
+      OPTS.no_callback = false;
       request(expressapp)
         .post('/login')
         .send({ldapuname: 'valid', ldappwd: 'valid'})
