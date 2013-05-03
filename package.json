@@ -1,6 +1,6 @@
 {
   "name": "passport-ldapauth",
-  "description": "Passport authentication strategy for LDAP",
+  "description": "LDAP authentication strategy for Passport",
   "author": "Vesa Poikajärvi <vesa.poikajarvi@iki.fi>",
   "keywords": [
     "ldap",
