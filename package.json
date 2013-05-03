@@ -30,10 +30,10 @@
   },
   "devDependencies": {
     "mocha": "1.9.x",
-    "chai": "1.5.x",
+    "chai": "1.6.x",
     "ldapjs": "0.6.x",
-    "express": "3.1.x",
-    "supertest": "0.5.x"
+    "express": "3.2.x",
+    "supertest": "0.6.x"
   },
   "scripts": {
     "test": "NODE_PATH=lib mocha test/*-test.js"
