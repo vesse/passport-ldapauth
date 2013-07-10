@@ -48,8 +48,8 @@ npm install passport-ldapauth
 
 * `server`: LDAP settings. These are passed directly to [node-ldapauth](https://github.com/trentm/node-ldapauth)
     * `url`: e.g. `ldap://localhost:389`
-    * `adminDN`: e.g. `cn='root'`
-    * `adminPassword`: Password for adminDN
+    * `adminDn`: e.g. `cn='root'`
+    * `adminPassword`: Password for adminDn
     * `searchBase`: e.g. `o=users,o=example.com`
     * `searchFilter`:  LDAP search filter, e.g. `(uid={{username}})`. Use literal `{{username}}` to have the given username used in the search.
 * `usernameField`: Field name where the username is found, defaults to _username_
