@@ -84,6 +84,13 @@ describe("LDAP authentication strategy", function() {
       .end(cb);
   });
 
+  it("should allow access with valid credentials in query string", function(cb) {
+    request(expressapp)
+      .post('/login?username=valid&password=valid')
+      .expect(200)
+      .end(cb);
+  });
+
   it("should return unauthorized with invalid credentials", function(cb) {
     request(expressapp)
       .post('/login')
@@ -104,7 +111,7 @@ describe("LDAP authentication strategy", function() {
     TEST_OPTS.no_callback = true;
     appserver.start(OPTS, TEST_OPTS, function(app) {
       TEST_OPTS.no_callback = false
-      request(expressapp)
+      request(app)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
         .expect(200)
@@ -116,7 +123,7 @@ describe("LDAP authentication strategy", function() {
     TEST_OPTS.no_callback = true;
     appserver.start(OPTS, TEST_OPTS, function(app) {
       TEST_OPTS.no_callback = false;
-      request(expressapp)
+      request(app)
         .post('/login')
         .send({username: 'valid', password: 'invalid'})
         .expect(401)
@@ -127,17 +134,15 @@ describe("LDAP authentication strategy", function() {
   it("should read given fields instead of defaults", function(cb) {
     OPTS.usernameField = 'ldapuname';
     OPTS.passwordField = 'ldappwd';
-    OPTS.no_callback   = true;
     appserver.start(OPTS, TEST_OPTS, function(app) {
-      OPTS.no_callback = false;
       request(expressapp)
         .post('/login')
         .send({ldapuname: 'valid', ldappwd: 'valid'})
         .expect(200)
-        .end(function() {
+        .end(function(err, res) {
           delete OPTS.usernameField;
           delete OPTS.passwordField;
-          cb();
+          cb(err);
         });
     });
   });
