@@ -81,10 +81,6 @@ var OPTS = {
 
 var app = express();
 
-passport.serializeUser(function(user, cb) {
-  return cb(null, user.dn.toString());
-});
-
 passport.use(new LdapStrategy(OPTS));
 
 app.configure(function() {
@@ -92,9 +88,11 @@ app.configure(function() {
   app.use(passport.initialize());
 });
 
-app.post('/login', passport.authenticate('ldapauth'), function(req, res) {
+app.post('/login', passport.authenticate('ldapauth', {session: false}), function(req, res) {
   res.send({status: 'ok'});
 });
+
+app.listen(8080);
 ```
 
 ## License
