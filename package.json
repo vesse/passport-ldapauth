@@ -29,11 +29,11 @@
     "passport": "~0.1.1"
   },
   "devDependencies": {
-    "mocha": "1.9.x",
-    "chai": "1.6.x",
+    "mocha": "1.12.x",
+    "chai": "1.7.x",
     "ldapjs": "0.6.x",
-    "express": "3.2.x",
-    "supertest": "0.6.x"
+    "express": "3.3.x",
+    "supertest": "0.7.x"
   },
   "scripts": {
     "test": "NODE_PATH=lib mocha test/*-test.js"
