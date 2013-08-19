@@ -39,6 +39,6 @@
     "supertest": "0.7.x"
   },
   "scripts": {
-    "test": "NODE_PATH=lib mocha test/*-test.js"
+    "test": "NODE_PATH=lib mocha --reporter spec test/*-test.js"
   }
 }

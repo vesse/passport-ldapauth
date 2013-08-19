@@ -51,7 +51,6 @@ exports.start = function(port, cb) {
   });
 
   server.listen(port, function() {
-    console.log("LDAP server up at %s", server.url);
     if (typeof cb === 'function') return cb();
   });
 };
