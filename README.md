@@ -1,6 +1,6 @@
 # passport-ldapauth
 
-[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [node-ldapauth](https://github.com/trentm/node-ldapauth)
+[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth)
 
 ## Usage
 
@@ -46,12 +46,14 @@ npm install passport-ldapauth
 
 ## Configuration options
 
-* `server`: LDAP settings. These are passed directly to [node-ldapauth](https://github.com/trentm/node-ldapauth)
+* `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth). See its documentation for all available options.
     * `url`: e.g. `ldap://localhost:389`
     * `adminDn`: e.g. `cn='root'`
     * `adminPassword`: Password for adminDn
     * `searchBase`: e.g. `o=users,o=example.com`
     * `searchFilter`:  LDAP search filter, e.g. `(uid={{username}})`. Use literal `{{username}}` to have the given username used in the search.
+    * `searchAttributes`: Optional array of attributes to fetch from LDAP server, e.g. `['displayName', 'mail']`. Defaults to `undefined`, i.e. fetch all attributes
+    * `tlsOptions`: Optional object with options accepted by Node.js [tls](http://nodejs.org/api/tls.html#tls_tls_connect_options_callback) module.
 * `usernameField`: Field name where the username is found, defaults to _username_
 * `passwordField`: Field name where the password is found, defaults to _password_
 * `passReqToCallback`: When `true`, `req` is the first argument to the verify callback (default: `false`):
