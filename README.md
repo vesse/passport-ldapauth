@@ -107,7 +107,7 @@ var opts = {
   server: {
     url: 'ldaps://ad.corporate.com:636',
     adminDn: 'non-person@corporate.com',
-    adinPassword: 'secret',
+    adminPassword: 'secret',
     searchBase: 'dc=corp,dc=corporate,dc=com',
     searchFilter: '(&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))',
     searchAttributes: ['displayName', 'mail'],
