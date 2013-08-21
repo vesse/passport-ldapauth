@@ -97,6 +97,34 @@ app.post('/login', passport.authenticate('ldapauth', {session: false}), function
 app.listen(8080);
 ```
 
+### Active Directory over SSL example
+
+Since this is quite common scenario in corporate environments including a simple
+base options creation when using `ldaps://` and needing to pass a certficate.
+
+```javascript
+var opts = {
+  server: {
+    url: 'ldaps://ad.corporate.com:636',
+    adminDn: 'non-person@corporate.com',
+    adinPassword: 'secret',
+    searchBase: 'dc=corp,dc=corporate,dc=com',
+    searchFilter: '(&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))',
+    searchAttributes: ['displayName', 'mail'],
+    tlsOptions: {
+      ca: null
+    }
+  }
+};
+
+opts.server.tlsOptions.ca = [
+  fs.readFileSync('/path/to/root_ca_cert.crt')
+];
+
+...
+```
+
+
 ## License
 
 MIT
