@@ -1,6 +1,6 @@
 # passport-ldapauth
 
-[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth)
+[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork)
 
 ## Usage
 
@@ -46,7 +46,7 @@ npm install passport-ldapauth
 
 ## Configuration options
 
-* `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth). See its documentation for all available options.
+* `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork). See its documentation for all available options.
     * `url`: e.g. `ldap://localhost:389`
     * `adminDn`: e.g. `cn='root'`
     * `adminPassword`: Password for adminDn

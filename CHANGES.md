@@ -1,7 +1,9 @@
 ## Changes
 
+* v0.1.1
+    * Documentation changes due to renaming git repository of `ldapauth-fork`
 * v0.1.0
-    * Use [ldapauth-fork](https://github.com/vesse/node-ldapauth) instead of
+    * Use [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork) instead of
       [ldapauth](https://github.com/trentm/node-ldapauth)
         * ldapjs upgraded to 0.6.3
         * New options including `tlsOptions`
