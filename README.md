@@ -99,8 +99,7 @@ app.listen(8080);
 
 ### Active Directory over SSL example
 
-Since this is quite common scenario in corporate environments including a simple
-base options creation when using `ldaps://` and needing to pass a certficate.
+Simple example config for connecting over `ldaps://` to a server requiring some internal CA certificate (often the case in corporations using Windows AD).
 
 ```javascript
 var fs = require('fs');
