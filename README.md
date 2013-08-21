@@ -103,6 +103,8 @@ Since this is quite common scenario in corporate environments including a simple
 base options creation when using `ldaps://` and needing to pass a certficate.
 
 ```javascript
+var fs = require('fs');
+
 var opts = {
   server: {
     url: 'ldaps://ad.corporate.com:636',
@@ -112,15 +114,12 @@ var opts = {
     searchFilter: '(&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))',
     searchAttributes: ['displayName', 'mail'],
     tlsOptions: {
-      ca: null
+      ca: [
+        fs.readFileSync('/path/to/root_ca_cert.crt')
+      ]
     }
   }
 };
-
-opts.server.tlsOptions.ca = [
-  fs.readFileSync('/path/to/root_ca_cert.crt')
-];
-
 ...
 ```
 
