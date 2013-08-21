@@ -28,8 +28,8 @@
     "url": "https://github.com/vesse/passport-ldapauth/issues"
   },
   "dependencies": {
-    "ldapauth": ">=2.0.0",
-    "passport": "~0.1.1"
+    "ldapauth-fork": "~2.2.5",
+    "passport": "~0.1.17"
   },
   "devDependencies": {
     "mocha": "1.12.x",
