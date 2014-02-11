@@ -121,7 +121,37 @@ var opts = {
 };
 ...
 ```
+## Asynchronous configuration retrieval
 
+Instead of providing a static configuration object, you can pass to the LdapStrategy a function that will take care of fetching the configuration.
+
+Example (here process.nextTick illustrates the asynchronous workings; in a real world this will for example be a database query):
+
+```javascript
+function getLDAPConfiguration(callback) {
+  process.nextTick(function() {
+    var opts = {
+      server: {
+        url: 'ldap://localhost:389',
+        adminDn: 'cn=root',
+        adminPassword: 'secret',
+        searchBase: 'ou=passport-ldapauth',
+        searchFilter: '(uid={{username}})'
+      }
+    };
+    callback(null, opts);
+  });
+}
+
+var LdapStrategy = require('passport-ldapauth').Strategy;
+
+passport.use(new LdapStrategy(getLDAPConfiguration,
+  function(user, done) {
+    ...
+    return done(null, user);
+  }
+));
+```
 
 ## License
 
