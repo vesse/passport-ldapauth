@@ -64,6 +64,8 @@ npm install passport-ldapauth
           }
         ));
 
+Note: you can pass a function instead of an object as `options`, see the [example below](#options-as-function)
+
 ## Express example
 
 ```javascript
@@ -122,6 +124,38 @@ var opts = {
 ...
 ```
 
+<a name="options-as-function"></a>
+## Asynchronous configuration retrieval
+
+Instead of providing a static configuration object, you can pass a function as `options` that will take care of fetching the configuration. It will be called with a callback function having the standard `(err, result)` signature. Notice that the provided function will be called on every authenticate request.
+
+```javascript
+var getLDAPConfiguration = function(callback) {
+  // Fetching things from database or whatever
+  process.nextTick(function() {
+    var opts = {
+      server: {
+        url: 'ldap://localhost:389',
+        adminDn: 'cn=root',
+        adminPassword: 'secret',
+        searchBase: 'ou=passport-ldapauth',
+        searchFilter: '(uid={{username}})'
+      }
+    };
+
+    callback(null, opts);
+  });
+};
+
+var LdapStrategy = require('passport-ldapauth').Strategy;
+
+passport.use(new LdapStrategy(getLDAPConfiguration,
+  function(user, done) {
+    ...
+    return done(null, user);
+  }
+));
+```
 
 ## License
 
