@@ -184,4 +184,35 @@ describe("LDAP authentication strategy", function() {
       });
     });
   });
+
+  describe("with options as function", function() {
+    var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+    OPTS.usernameField = 'cb_uname';
+    OPTS.passwordField = 'cb_pwd';
+
+    var opts = function(cb) {
+      process.nextTick(function() {
+        cb(null, OPTS);
+      });
+    };
+
+    before(start_servers(opts, BASE_TEST_OPTS));
+    after(stop_servers);
+
+    it("should use the options returned from the function", function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({cb_uname: 'valid', cb_pwd: 'valid'})
+        .expect(200)
+        .end(cb);
+    });
+
+    it("should not allow login if using wrong fields", function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({username: 'valid', password: 'valid'})
+        .expect(401)
+        .end(cb);
+    });
+  });
 });
