@@ -1,5 +1,9 @@
 ## Changes
 
+* v0.2.0
+    * [#8](https://github.com/vesse/passport-ldapauth/issues/8) - Possibility to provide a callback function instead of options object to constructor (contributed by Linagora)
+    * Update Passport dependency to 0.2.0
+    * Get rid of `var self = this;`
 * v0.1.1
     * Documentation changes due to renaming git repository of `ldapauth-fork`
 * v0.1.0
