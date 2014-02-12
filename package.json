@@ -30,14 +30,14 @@
   },
   "dependencies": {
     "ldapauth-fork": "~2.2.5",
-    "passport": "~0.1.17"
+    "passport": "~0.2.0"
   },
   "devDependencies": {
-    "mocha": "1.14.x",
-    "chai": "1.8.x",
-    "ldapjs": "0.6.x",
+    "mocha": "1.17.x",
+    "chai": "1.9.x",
+    "ldapjs": "0.7.x",
     "express": "3.4.x",
-    "supertest": "0.8.x"
+    "supertest": "0.9.x"
   },
   "scripts": {
     "test": "NODE_PATH=lib mocha --reporter spec test/*-test.js"
