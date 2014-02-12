@@ -52,13 +52,6 @@ describe("LDAP authentication strategy", function() {
       cb();
     });
 
-    it("should throw an error if options are not provided", function(cb) {
-      (function() {
-        new LdapStrategy(function() {});
-      }).should.throw(Error);
-      cb();
-    });
-
     it("should throw an error if options are not accepted by ldapauth", function(cb) {
       var s = new LdapStrategy({}, function() {});
       (function() {
