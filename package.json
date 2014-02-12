@@ -3,7 +3,8 @@
   "description": "LDAP authentication strategy for Passport",
   "author": "Vesa Poikajärvi <vesa.poikajarvi@iki.fi>",
   "contributors": [
-    "Simon Gaeremynck <gaeremyncks@gmail.com>"
+    "Simon Gaeremynck <gaeremyncks@gmail.com>",
+    "Michael Bailly <mbailly@linagora.com>"
   ],
   "keywords": [
     "ldap",
