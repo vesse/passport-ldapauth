@@ -33,11 +33,11 @@
     "passport": "~0.2.0"
   },
   "devDependencies": {
-    "mocha": "1.17.x",
+    "mocha": "1.18.x",
     "chai": "1.9.x",
     "ldapjs": "0.7.x",
-    "express": "3.4.x",
-    "supertest": "0.9.x"
+    "express": "3.5.x",
+    "supertest": "0.10.x"
   },
   "scripts": {
     "test": "NODE_PATH=lib mocha --reporter spec test/*-test.js"
