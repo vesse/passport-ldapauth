@@ -1,6 +1,7 @@
 var express      = require('express'),
     passport     = require('passport'),
-    LdapStrategy = require('passport-ldapauth').Strategy;
+    LdapStrategy = require('passport-ldapauth').Strategy,
+    bodyParser   = require('body-parser');
 
 var server = null;
 
@@ -20,10 +21,8 @@ exports.start = function(opts, testopts, cb) {
 
   init_passport(opts, testopts);
 
-  app.configure(function() {
-    app.use(express.bodyParser());
-    app.use(passport.initialize());
-  });
+  app.use(bodyParser());
+  app.use(passport.initialize());
 
   app.post('/login', passport.authenticate('ldapauth', {session: false}), function(req, res) {
     res.send({status: 'ok'});
