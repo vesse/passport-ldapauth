@@ -169,7 +169,8 @@ describe("LDAP authentication strategy", function() {
 
         s.success = function(user) {
           should.exist(user);
-          user.uid.should.equal('valid');
+          user.id.should.equal('valid');
+		  user._json.uid.should.equal('valid');
           cb();
         };
 
