@@ -44,7 +44,9 @@ npm install passport-ldapauth
 [![Build Status](https://travis-ci.org/vesse/passport-ldapauth.png)](https://travis-ci.org/vesse/passport-ldapauth)
 [![Dependency Status](https://gemnasium.com/vesse/passport-ldapauth.png)](https://gemnasium.com/vesse/passport-ldapauth)
 
-## Configuration options
+## Usage
+
+### Configure strategy
 
 * `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork). See its documentation for all available options.
     * `url`: e.g. `ldap://localhost:389`
@@ -65,6 +67,18 @@ npm install passport-ldapauth
         ));
 
 Note: you can pass a function instead of an object as `options`, see the [example below](#options-as-function)
+
+### Authenticate requests
+
+Use `passport.authenticate()`, specifying the `'ldapauth'` strategy, to authenticate requests.
+
+#### `authenticate()` options
+
+In addition to [default authentication options](http://passportjs.org/guide/authenticate/) the following options are available for `passport.authenticate()`:
+
+ * `badRequestMessage`  flash message for missing username/password (default: 'Missing credentials')
+ * `invalidCredentials`  flash message for `InvalidCredentialsError`, `NoSuchObjectError`, and `/no such user/i` LDAP errors (default: 'Invalid username/password')
+ * `userNotFound`  flash message when LDAP returns no error but also no user (default: 'Invalid username/password')
 
 ## Express example
 
