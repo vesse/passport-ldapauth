@@ -2,37 +2,6 @@
 
 [Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork)
 
-## Usage
-
-```javascript
-var LdapStrategy = require('passport-ldapauth').Strategy;
-
-passport.use(new LdapStrategy({
-    server: {
-      url: 'ldap://localhost:389',
-      ...
-    }
-  }));
-```
-
-If you wish to e.g. do some additional verification or initialize user data to local database you may supply a `verify` callback which accepts `user` object and then calls the `done` callback supplying a `user`, which should be set to `false` if user is not allowed to authenticate. If an exception occured, `err` should be set.
-
-```javascript
-var LdapStrategy = require('passport-ldapauth').Strategy;
-
-passport.use(new LdapStrategy({
-    server: {
-      url: 'ldap://localhost:389',
-      ...
-    }
-  },
-  function(user, done) {
-    ...
-    return done(null, user);
-  }
-));
-```
-
 ## Install
 
 ```
