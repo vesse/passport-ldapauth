@@ -79,7 +79,7 @@ describe("LDAP authentication strategy", function() {
       request(expressapp)
         .post('/login')
         .send({})
-        .expect(401)
+        .expect(400)
         .end(cb);
     });
 
@@ -204,7 +204,7 @@ describe("LDAP authentication strategy", function() {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
-        .expect(401)
+        .expect(400)
         .end(cb);
     });
   });
