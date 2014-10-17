@@ -35,12 +35,12 @@
     "passport": "~0.2.0"
   },
   "devDependencies": {
-    "body-parser": "1.8.x",
+    "body-parser": "1.9.x",
     "chai": "1.9.x",
     "express": "4.9.x",
     "ldapjs": "0.7.x",
     "mocha": "1.21.x",
-    "supertest": "0.13.x",
+    "supertest": "0.14.x",
     "passport": "~0.2.0"
   },
   "scripts": {
