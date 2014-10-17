@@ -15,6 +15,8 @@ npm install passport-ldapauth
 
 ## Usage
 
+### Configure strategy
+
 ```javascript
 var LdapStrategy = require('passport-ldapauth').Strategy;
 
@@ -25,8 +27,6 @@ passport.use(new LdapStrategy({
     }
   }));
 ```
-
-### Configure strategy
 
 * `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork). See its documentation for all available options.
     * `url`: e.g. `ldap://localhost:389`
