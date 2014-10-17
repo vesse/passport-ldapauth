@@ -1,5 +1,10 @@
 ## Changes
 
+* v0.2.2
+    * Allow configuring flash messages when calling `passport.authenticate()`
+    * Return HTTP 400 when username or password is missing
+* v0.2.1
+    * Passport as peerDependency, prevents version incompatibility
 * v0.2.0
     * [#8](https://github.com/vesse/passport-ldapauth/issues/8) - Possibility to provide a callback function instead of options object to constructor (contributed by Linagora)
     * Update Passport dependency to 0.2.0
