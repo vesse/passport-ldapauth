@@ -1,5 +1,7 @@
 ## Changes
 
+* v0.2.3
+    * Documentation using the same keys as ldapjs (bindDn and bindCredentials)
 * v0.2.2
     * Allow configuring flash messages when calling `passport.authenticate()`
     * Return HTTP 400 when username or password is missing
