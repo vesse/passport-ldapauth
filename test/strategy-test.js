@@ -12,8 +12,8 @@ var expressapp = null;
 var BASE_OPTS = {
   server: {
     url: 'ldap://localhost:' +  LDAP_PORT.toString(),
-    adminDn: 'cn=root',
-    adminPassword: 'secret',
+    bindDn: 'cn=root',
+    bindCredentials: 'secret',
     searchBase: 'ou=passport-ldapauth',
     searchFilter: '(uid={{username}})'
   }

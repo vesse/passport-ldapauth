@@ -30,8 +30,8 @@ passport.use(new LdapStrategy({
 
 * `server`: LDAP settings. These are passed directly to [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork). See its documentation for all available options.
     * `url`: e.g. `ldap://localhost:389`
-    * `adminDn`: e.g. `cn='root'`
-    * `adminPassword`: Password for adminDn
+    * `bindDn`: e.g. `cn='root'`
+    * `bindCredentials`: Password for bindDn
     * `searchBase`: e.g. `o=users,o=example.com`
     * `searchFilter`:  LDAP search filter, e.g. `(uid={{username}})`. Use literal `{{username}}` to have the given username used in the search.
     * `searchAttributes`: Optional array of attributes to fetch from LDAP server, e.g. `['displayName', 'mail']`. Defaults to `undefined`, i.e. fetch all attributes
@@ -70,8 +70,8 @@ var express      = require('express'),
 var OPTS = {
   server: {
     url: 'ldap://localhost:389',
-    adminDn: 'cn=root',
-    adminPassword: 'secret',
+    bindDn: 'cn=root',
+    bindCredentials: 'secret',
     searchBase: 'ou=passport-ldapauth',
     searchFilter: '(uid={{username}})'
   }
@@ -103,8 +103,8 @@ var fs = require('fs');
 var opts = {
   server: {
     url: 'ldaps://ad.corporate.com:636',
-    adminDn: 'non-person@corporate.com',
-    adminPassword: 'secret',
+    bindDn: 'cn=non-person,ou=system,dc=corp,dc=corporate,dc=com',
+    bindCredentials: 'secret',
     searchBase: 'dc=corp,dc=corporate,dc=com',
     searchFilter: '(&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))',
     searchAttributes: ['displayName', 'mail'],
@@ -130,8 +130,8 @@ var getLDAPConfiguration = function(callback) {
     var opts = {
       server: {
         url: 'ldap://localhost:389',
-        adminDn: 'cn=root',
-        adminPassword: 'secret',
+        bindDn: 'cn=root',
+        bindCredentials: 'secret',
         searchBase: 'ou=passport-ldapauth',
         searchFilter: '(uid={{username}})'
       }
