@@ -65,6 +65,7 @@ In addition to [default authentication options](http://passportjs.org/guide/auth
 ```javascript
 var express      = require('express'),
     passport     = require('passport'),
+    bodyParser   = require('body-parser'),
     LdapStrategy = require('passport-ldapauth').Strategy;
 
 var OPTS = {
@@ -81,10 +82,9 @@ var app = express();
 
 passport.use(new LdapStrategy(OPTS));
 
-app.configure(function() {
-  app.use(express.bodyParser());
-  app.use(passport.initialize());
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(passport.initialize());
 
 app.post('/login', passport.authenticate('ldapauth', {session: false}), function(req, res) {
   res.send({status: 'ok'});
