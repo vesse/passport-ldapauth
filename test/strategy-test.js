@@ -1,5 +1,5 @@
 var should       = require('chai').Should(),
-    LdapStrategy = require('passport-ldapauth').Strategy,
+    LdapStrategy = require('passport-ldapauth'),
     request      = require('supertest'),
     ldapserver   = require('./ldapserver'),
     appserver    = require('./appserver');
@@ -44,6 +44,26 @@ var stop_servers = function(cb) {
 describe("LDAP authentication strategy", function() {
 
   describe("by itself", function() {
+
+    it("should export Strategy constructor directly", function(cb) {
+      require('passport-ldapauth').should.be.a('function');
+      cb();
+    });
+
+    it("should export Strategy constructor separately as well", function(cb) {
+      var strategy = require('passport-ldapauth').Strategy;
+      strategy.should.be.a('function');
+      (function() {
+        new strategy(BASE_OPTS);
+      }).should.not.throw(Error);
+      cb();
+    });
+
+    it("should be named ldapauth", function(cb) {
+      var s = new LdapStrategy(BASE_OPTS);
+      s.name.should.equal('ldapauth');
+      cb();
+    });
 
     it("should throw an error if no arguments are provided", function(cb) {
       (function() {
