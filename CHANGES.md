@@ -1,5 +1,7 @@
 ## Changes
 
+* v0.2.4
+    * Inherit from [passport-strategy](https://github.com/jaredhanson/passport-strategy) like `passport-local` and others do.
 * v0.2.3
     * Documentation using the same keys as ldapjs (bindDn and bindCredentials)
 * v0.2.2
