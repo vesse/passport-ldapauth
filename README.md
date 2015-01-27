@@ -18,7 +18,7 @@ npm install passport-ldapauth
 ### Configure strategy
 
 ```javascript
-var LdapStrategy = require('passport-ldapauth').Strategy;
+var LdapStrategy = require('passport-ldapauth');
 
 passport.use(new LdapStrategy({
     server: {
@@ -66,7 +66,7 @@ In addition to [default authentication options](http://passportjs.org/guide/auth
 var express      = require('express'),
     passport     = require('passport'),
     bodyParser   = require('body-parser'),
-    LdapStrategy = require('passport-ldapauth').Strategy;
+    LdapStrategy = require('passport-ldapauth');
 
 var OPTS = {
   server: {
@@ -141,7 +141,7 @@ var getLDAPConfiguration = function(callback) {
   });
 };
 
-var LdapStrategy = require('passport-ldapauth').Strategy;
+var LdapStrategy = require('passport-ldapauth');
 
 passport.use(new LdapStrategy(getLDAPConfiguration,
   function(user, done) {
