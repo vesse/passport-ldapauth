@@ -124,7 +124,7 @@ var opts = {
 Instead of providing a static configuration object, you can pass a function as `options` that will take care of fetching the configuration. It will be called with a callback function having the standard `(err, result)` signature. Notice that the provided function will be called on every authenticate request.
 
 ```javascript
-var getLDAPConfiguration = function(callback) {
+var getLDAPConfiguration = function(req, callback) {
   // Fetching things from database or whatever
   process.nextTick(function() {
     var opts = {
@@ -136,7 +136,11 @@ var getLDAPConfiguration = function(callback) {
         searchFilter: '(uid={{username}})'
       }
     };
-
+    
+    //OR
+    
+    var opts = fetchConfigFromDB(req.body.ldapServerId);
+    
     callback(null, opts);
   });
 };
