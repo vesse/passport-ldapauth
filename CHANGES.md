@@ -1,5 +1,7 @@
 ## Changes
 
+* v0.2.5
+    * [#21](https://github.com/vesse/passport-ldapauth/issues/21) - Handle `constraintViolationError` as a login failure instead of an error.
 * v0.2.4
     * Inherit from [passport-strategy](https://github.com/jaredhanson/passport-strategy) like `passport-local` and others do.
 * v0.2.3
