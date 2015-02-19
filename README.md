@@ -59,6 +59,7 @@ In addition to [default authentication options](http://passportjs.org/guide/auth
  * `badRequestMessage`  flash message for missing username/password (default: 'Missing credentials')
  * `invalidCredentials`  flash message for `InvalidCredentialsError`, `NoSuchObjectError`, and `/no such user/i` LDAP errors (default: 'Invalid username/password')
  * `userNotFound`  flash message when LDAP returns no error but also no user (default: 'Invalid username/password')
+ * `constraintViolation`  flash message when user account is locked (default: 'Exceeded password retry limit, account locked')
 
 ## Express example
 
