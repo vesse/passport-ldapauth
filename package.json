@@ -4,7 +4,8 @@
   "author": "Vesa Poikajärvi <vesa.poikajarvi@iki.fi>",
   "contributors": [
     "Simon Gaeremynck <gaeremyncks@gmail.com>",
-    "Michael Bailly <mbailly@linagora.com>"
+    "Michael Bailly <mbailly@linagora.com>",
+    "Jason Gelinas <jason.gelinas@citi.com>"
   ],
   "keywords": [
     "ldap",
