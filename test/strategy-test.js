@@ -228,4 +228,59 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
   });
+  
+  describe("with options as function returning dynamic sets", function() {
+    var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+    OPTS.usernameField = 'first_uname';
+    OPTS.passwordField = 'first_pwd';
+
+    var OPTS2 = JSON.parse(JSON.stringify(BASE_OPTS));
+    OPTS2.usernameField = 'second_uname';
+    OPTS2.passwordField = 'second_pwd';
+
+    var opts = function(req, cb) {
+      process.nextTick(function() {
+        if (req.body.set == 'first') {
+          cb(null, OPTS);
+        } else {
+          cb(null, OPTS2);
+        }
+      });
+    };
+
+    before(start_servers(opts, BASE_TEST_OPTS));
+    after(stop_servers);
+
+    it("should use the first set options returned from the function", function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({first_uname: 'valid', first_pwd: 'valid', set: 'first'})
+        .expect(200)
+        .end(cb);
+    });
+
+    it("should not allow first set login if using wrong fields", function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({second_uname: 'valid', second_pwd: 'valid', set: 'first'})
+        .expect(400)
+        .end(cb);
+    });
+
+    it("should use the second set options returned from the function", function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({second_uname: 'valid', second_pwd: 'valid', set: 'second'})
+        .expect(200)
+        .end(cb);
+    });
+
+    it("should not allow second set login if using wrong fields", function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({first_uname: 'valid', first_pwd: 'valid', set: 'second'})
+        .expect(400)
+        .end(cb);
+    });
+  });
 });
