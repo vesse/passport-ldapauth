@@ -14,7 +14,7 @@
     "authentication",
     "ldapauth"
   ],
-  "version": "0.2.5",
+  "version": "0.2.6",
   "license": {
     "type": "MIT",
     "url": "https://github.com/vesse/passport-ldapauth/raw/master/LICENSE"
