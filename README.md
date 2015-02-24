@@ -122,7 +122,7 @@ var opts = {
 <a name="options-as-function"></a>
 ## Asynchronous configuration retrieval
 
-Instead of providing a static configuration object, you can pass a function as `options` that will take care of fetching the configuration. It will be called with the and a callback function having the standard `(err, result)` signature. Notice that the provided function will be called on every authenticate request.
+Instead of providing a static configuration object, you can pass a function as `options` that will take care of fetching the configuration. It will be called with the `req` object and a callback function having the standard `(err, result)` signature. Notice that the provided function will be called on every authenticate request.
 
 ```javascript
 var getLDAPConfiguration = function(req, callback) {
