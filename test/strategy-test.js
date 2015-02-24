@@ -288,7 +288,7 @@ describe("LDAP authentication strategy", function() {
     var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
     OPTS.server.groupSearchBase = 'ou=passport-ldapauth';
     OPTS.server.groupSearchScope = 'sub';
-    OPTS.server.groupSearchFilter = '(memberof={{dn}})';
+    OPTS.server.groupSearchFilter = '(member={{dn}})';
 
     it("should return groups for user", function(cb) {
       start_servers(OPTS, BASE_TEST_OPTS)(function() {

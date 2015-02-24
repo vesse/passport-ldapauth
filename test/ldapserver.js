@@ -45,7 +45,7 @@ exports.start = function(port, cb) {
   server.search(SUFFIX, authorize, function(req, res, next) {
     if (req.filter.attribute === 'uid' && req.filter.value === 'valid') {
       res.send(db['valid']);
-    } else if (req.filter.attribute === 'memberof' && req.filter.value === db.valid.dn) {
+    } else if (req.filter.attribute === 'member' && req.filter.value === db.valid.dn) {
       res.send({
         dn: 'cn=Group 1, ou=passport-ldapauth',
         attributes: {
