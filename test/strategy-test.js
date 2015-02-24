@@ -283,4 +283,32 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
   });
+
+  describe("with group fetch settings defined", function() {
+    var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+    OPTS.server.groupSearchBase = 'ou=passport-ldapauth';
+    OPTS.server.groupSearchScope = 'sub';
+    OPTS.server.groupSearchFilter = '(member={{dn}})';
+
+    it("should return groups for user", function(cb) {
+      start_servers(OPTS, BASE_TEST_OPTS)(function() {
+        var req = {body: {username: 'valid', password: 'valid'}},
+            s   = new LdapStrategy(OPTS, function(user, done) {
+              req.should.have.keys('body');
+              req.body.should.have.keys(['username', 'password']);
+              done(null, user);
+            });
+
+        s.success = function(user) {
+          should.exist(user);
+          user.uid.should.equal('valid');
+          // TODO: Check groups
+          cb();
+        };
+
+        s.authenticate(req);
+      });
+    });
+  });
 });
+
