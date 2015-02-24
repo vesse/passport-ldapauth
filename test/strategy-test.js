@@ -228,7 +228,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
   });
-  
+
   describe("with options as function returning dynamic sets", function() {
     var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
     OPTS.usernameField = 'first_uname';
@@ -288,7 +288,7 @@ describe("LDAP authentication strategy", function() {
     var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
     OPTS.server.groupSearchBase = 'ou=passport-ldapauth';
     OPTS.server.groupSearchScope = 'sub';
-    OPTS.server.groupSearchFilter = '(member={{dn}})';
+    OPTS.server.groupSearchFilter = '(memberof={{dn}})';
 
     it("should return groups for user", function(cb) {
       start_servers(OPTS, BASE_TEST_OPTS)(function() {
@@ -302,7 +302,9 @@ describe("LDAP authentication strategy", function() {
         s.success = function(user) {
           should.exist(user);
           user.uid.should.equal('valid');
-          // TODO: Check groups
+          user._groups.length.should.equal(2);
+          user._groups[0].name.should.equal('Group 1');
+          user._groups[1].name.should.equal('Group 2');
           cb();
         };
 
