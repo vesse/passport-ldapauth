@@ -2,6 +2,19 @@
 
 [Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork)
 
+## Node v0.12 / `dtrace-provider` issue
+
+Currently the latest released version of [ldapjs](https://github.com/mcavage/node-ldapjs) which this module depends on does not install succesfully on Node v0.12 (see [issue #258](https://github.com/mcavage/node-ldapjs/issues/258)) due to old `dtrace-provider` dependency. To work around the issue, add dependency to `ldapjs` master to your `package.json`:
+
+```json
+{
+  "dependencies": {
+    "ldapjs": "mcavage/node-ldapjs",
+    "passport-ldapauth": "0.3.0"
+  }
+}
+```
+
 ## Install
 
 ```
