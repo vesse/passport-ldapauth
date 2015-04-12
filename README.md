@@ -4,7 +4,7 @@
 
 ## Node v0.12 / `dtrace-provider` issue
 
-Currently the latest released version of [ldapjs](https://github.com/mcavage/node-ldapjs) which this module depends on does not install succesfully on Node v0.12 (see [issue #258](https://github.com/mcavage/node-ldapjs/issues/258)) due to old `dtrace-provider` dependency. To work around the issue, add dependency to `ldapjs` master to your `package.json`:
+Currently the latest released version of [ldapjs](https://github.com/mcavage/node-ldapjs) which this module depends on does not install succesfully on Node v0.12 on Mac (see [issue #258](https://github.com/mcavage/node-ldapjs/issues/258)) due to old `dtrace-provider` dependency. To work around the issue, add dependency to `ldapjs` master to your `package.json`:
 
 ```json
 {
