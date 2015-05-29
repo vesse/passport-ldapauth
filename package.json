@@ -14,7 +14,7 @@
     "authentication",
     "ldapauth"
   ],
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": {
     "type": "MIT",
     "url": "https://github.com/vesse/passport-ldapauth/raw/master/LICENSE"
@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "passport-strategy": "1.x.x",
-    "ldapauth-fork": "~2.3.0"
+    "ldapauth-fork": "~2.3.0",
+    "basic-auth": "1.0.1"
   },
   "devDependencies": {
     "body-parser": "1.12.x",
