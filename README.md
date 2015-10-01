@@ -91,6 +91,7 @@ And for [Microsoft AD messages](http://www-01.ibm.com/support/docview.wss?uid=sw
  * `accountExpired`  flash message for an expired account (default: 'Account expired')
  * `passwordMustChange`  flash message for a password change (default: 'User must reset password')
  * `accountLockedOut`  flash message for a locked out account (default: 'User account locked')
+ * `defaultADError` flash default unknown error data message (default: 'Invalid username/password')
 
 
 ## Express example
