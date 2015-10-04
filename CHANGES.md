@@ -1,5 +1,7 @@
 ## Changes
 
+* v0.3.1
+    * [#35](https://github.com/vesse/passport-ldapauth/issues/35) - Show more specific error messages from Microsoft AD login errors if identified.
 * v0.3.0
     * [#10](https://github.com/vesse/passport-ldapauth/issues/10) - Add support for fetching groups. While this is really coming from [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork), updated the minor version of this library as well to draw attention to new features.
 * v0.2.5
