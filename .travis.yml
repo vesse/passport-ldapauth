@@ -7,9 +7,12 @@ branches:
 node_js:
   - "0.12"
   - "0.10"
-  - "0.8"
+  - "4.0"
+  - "4.1"
   - iojs
 
 notifications:
   email:
     - vesa.poikajarvi@iki.fi
+
+sudo: false
