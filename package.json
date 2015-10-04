@@ -38,10 +38,11 @@
     "body-parser": "1.12.x",
     "chai": "2.1.x",
     "express": "4.9.x",
+    "express-session": "^1.11.3",
     "ldapjs": "0.7.x",
     "mocha": "2.1.x",
-    "supertest": "0.15.x",
-    "passport": "~0.2.0"
+    "passport": "~0.2.0",
+    "supertest": "0.15.x"
   },
   "scripts": {
     "test": "NODE_PATH=lib mocha --reporter spec test/*-test.js"

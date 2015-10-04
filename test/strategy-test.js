@@ -121,7 +121,7 @@ describe("LDAP authentication strategy", function() {
     it("should return unauthorized with invalid credentials", function(cb) {
       request(expressapp)
         .post('/login')
-        .send({username: 'valid', password: 'invvalid'})
+        .send({username: 'valid', password: 'invalid'})
         .expect(401)
         .end(cb);
     });
@@ -129,9 +129,21 @@ describe("LDAP authentication strategy", function() {
     it("should return unauthorized with non-existing user", function(cb) {
       request(expressapp)
         .post('/login')
-        .send({username: 'nonexisting', password: 'invvalid'})
+        .send({username: 'nonexisting', password: 'invalid'})
         .expect(401)
         .end(cb);
+    });
+
+    it("should return more specific flash message for AD reply", function(cb) {
+      request(expressapp)
+        .post('/custom-cb-login')
+        .send({username: 'ms-ad', password: 'invalid'})
+        .expect(401)
+        .end(function(err, res) {
+          should.not.exist(err);
+          res.body.message.should.equal('Account disabled')
+          cb(err, res);
+        });
     });
   });
 

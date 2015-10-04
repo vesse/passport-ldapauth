@@ -1,7 +1,8 @@
 var express      = require('express'),
     passport     = require('passport'),
     LdapStrategy = require('passport-ldapauth').Strategy,
-    bodyParser   = require('body-parser');
+    bodyParser   = require('body-parser'),
+    session      = require('express-session');
 
 var server = null;
 
@@ -15,6 +16,14 @@ var init_passport = function(opts, testopts) {
   }
 };
 
+passport.serializeUser(function(user, cb) {
+  cb(null, user.dn);
+});
+
+passport.deserializeUser(function(dn, cb) {
+  cb(null, {dn: dn});
+});
+
 exports.start = function(opts, testopts, cb) {
 
   var app = express();
@@ -22,10 +31,27 @@ exports.start = function(opts, testopts, cb) {
   init_passport(opts, testopts);
 
   app.use(bodyParser.json());
+  app.use(session({
+    secret: 'cat',
+    saveUninitialized: false,
+    resave: false
+  }));
   app.use(passport.initialize());
+  app.use(passport.session());
 
   app.post('/login', passport.authenticate('ldapauth', {session: false}), function(req, res) {
     res.send({status: 'ok'});
+  });
+
+  app.post('/custom-cb-login', function(req, res, next) {
+    passport.authenticate('ldapauth', function(err, user, info) {
+      if (err) return next(err);
+      if (!user) return res.status(401).send(info);
+      req.logIn(user, function(err) {
+        if (err) return next(err);
+        return res.json(user);
+      })
+    })(req, res, next);
   });
 
   if (typeof cb === 'function') return cb(app);
