@@ -79,24 +79,22 @@ Use `passport.authenticate()`, specifying the `'ldapauth'` strategy, to authenti
 
 #### `authenticate()` options
 
-In addition to [default authentication options](http://passportjs.org/guide/authenticate/) the following options are available for `passport.authenticate()`:
+In addition to [default authentication options](http://passportjs.org/guide/authenticate/) the following flash message options are available for `passport.authenticate()`:
 
- * `badRequestMessage`  flash message for missing username/password (default: 'Missing credentials')
- * `invalidCredentials`  flash message for `InvalidCredentialsError`, `NoSuchObjectError`, and `/no such user/i` LDAP errors (default: 'Invalid username/password')
- * `userNotFound`  flash message when LDAP returns no error but also no user (default: 'Invalid username/password')
- * `constraintViolation`  flash message when user account is locked (default: 'Exceeded password retry limit, account locked')
+ * `badRequestMessage`: missing username/password (default: 'Missing credentials')
+ * `invalidCredentials`: `InvalidCredentialsError`, `NoSuchObjectError`, and `/no such user/i` LDAP errors (default: 'Invalid username/password')
+ * `userNotFound`: LDAP returns no error but also no user (default: 'Invalid username/password')
+ * `constraintViolation`: user account is locked (default: 'Exceeded password retry limit, account locked')
 
-And for [Microsoft AD messages](http://www-01.ibm.com/support/docview.wss?uid=swg21290631), these options can also be used:
+And for [Microsoft AD messages](http://www-01.ibm.com/support/docview.wss?uid=swg21290631), these flash message options can also be used (used instead of `invalidCredentials` if matching error code is found):
 
- * `invalidLogonHours`  flash message for not being allowed to login at this current time (default: 'Not Permitted to login at this time')
- * `invalidWorkstation` flash message for not being allowed to login from this current location (default: 'Not permited to logon at this workstation')
- * `passwordExpired`  flash message for an expired password (default: 'Password expired')
- * `accountDisabled` flash message for a disabled account (default: 'Account disabled')
- * `accountExpired`  flash message for an expired account (default: 'Account expired')
- * `passwordMustChange`  flash message for a password change (default: 'User must reset password')
- * `accountLockedOut`  flash message for a locked out account (default: 'User account locked')
- * `defaultADError` flash default unknown error data message (default: 'Invalid username/password')
-
+ * `invalidLogonHours`: not being allowed to login at this current time (default: 'Not Permitted to login at this time')
+ * `invalidWorkstation`: not being allowed to login from this current location (default: 'Not permited to logon at this workstation')
+ * `passwordExpired`: expired password (default: 'Password expired')
+ * `accountDisabled`: disabled account (default: 'Account disabled')
+ * `accountExpired`: expired account (default: 'Account expired')
+ * `passwordMustChange`: password change (default: 'User must reset password')
+ * `accountLockedOut`: locked out account (default: 'User account locked')
 
 ## Express example
 
