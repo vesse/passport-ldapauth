@@ -45,6 +45,8 @@ exports.start = function(port, cb) {
   server.search(SUFFIX, authorize, function(req, res, next) {
     if (req.filter.attribute === 'uid' && req.filter.value === 'valid') {
       res.send(db['valid']);
+    } else if (req.filter.attribute === 'uid' && req.filter.value === 'ms-ad') {
+      return next(new ldap.InvalidCredentialsError("0090308: LdapErr: DSID-0C09030B, comment: AcceptSecurityContext error, data 533, v893 HEX: 0x533 - account disabled"));
     } else if (req.filter.attribute === 'member' && req.filter.value === db.valid.dn) {
       res.send({
         dn: 'cn=Group 1, ou=passport-ldapauth',
