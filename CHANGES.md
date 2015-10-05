@@ -4,6 +4,8 @@
     * [#35](https://github.com/vesse/passport-ldapauth/issues/35) - Show more specific error messages from Microsoft AD login errors if identified.
 * v0.3.0
     * [#10](https://github.com/vesse/passport-ldapauth/issues/10) - Add support for fetching groups. While this is really coming from [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork), updated the minor version of this library as well to draw attention to new features.
+* v0.2.6
+    * [#24](https://github.com/vesse/passport-ldapauth/pull/24) - Pass `req` to options function, enables request specific LDAP configuration.
 * v0.2.5
     * [#21](https://github.com/vesse/passport-ldapauth/issues/21) - Handle `constraintViolationError` as a login failure instead of an error.
 * v0.2.4
@@ -19,6 +21,8 @@
     * [#8](https://github.com/vesse/passport-ldapauth/issues/8) - Possibility to provide a callback function instead of options object to constructor (contributed by Linagora)
     * Update Passport dependency to 0.2.0
     * Get rid of `var self = this;`
+* v0.1.2
+    * [#6](https://github.com/vesse/passport-ldapauth/issues/6) - Handle NoSuchObjectError as login failure.
 * v0.1.1
     * Documentation changes due to renaming git repository of `ldapauth-fork`
 * v0.1.0
