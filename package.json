@@ -39,7 +39,6 @@
     "body-parser": "1.14.x",
     "chai": "3.3.x",
     "express": "4.9.x",
-    "express-session": "1.11.x",
     "ldapjs": "0.7.x",
     "mocha": "2.3.x",
     "passport": "0.3.x",
