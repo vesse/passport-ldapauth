@@ -2,27 +2,6 @@
 
 [Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork)
 
-## Node v0.12
-
-### `dtrace-provider` issue
-
-Currently the latest released version of [ldapjs](https://github.com/mcavage/node-ldapjs) which this module depends on does not install succesfully on Node v0.12 on Mac (see [issue #258](https://github.com/mcavage/node-ldapjs/issues/258)) due to old `dtrace-provider` dependency. To work around the issue, add dependency to `ldapjs` master to your `package.json`:
-
-```json
-{
-  "dependencies": {
-    "ldapjs": "mcavage/node-ldapjs",
-    "passport-ldapauth": "0.3.0"
-  }
-}
-```
-
-`dtrace-provider` is an optional dependency, ie. if you don't need it there's no need to do anything.
-
-### SSL issue
-
-This also comes form `ldapjs` (see [issue #258](https://github.com/mcavage/node-ldapjs/issues/258)), and the same workaround solves it.
-
 ### Microsoft AD LDAP protocol
 
 Error 49 handles much more than just Invalid credentials, partial support for MS AD LDAP has been implemented (see [issue #35](https://github.com/vesse/passport-ldapauth/issues/35)).  Any additional supported data/comments could be added in the future.

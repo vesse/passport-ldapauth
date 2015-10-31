@@ -324,5 +324,21 @@ describe("LDAP authentication strategy", function() {
       });
     });
   });
-});
 
+  describe("with invalid LDAP url", function() {
+    var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+    OPTS.server.url = 'ldap://nonexistingdomain.fi:389';
+
+    before(start_servers(OPTS, BASE_TEST_OPTS));
+
+    after(stop_servers);
+
+    it("should handle the error", function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({})
+        .expect(400)
+        .end(cb);
+    });
+  });
+});
