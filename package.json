@@ -16,10 +16,7 @@
     "ldapauth"
   ],
   "version": "0.4.0",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/vesse/passport-ldapauth/raw/master/LICENSE"
-  },
+  "license": "MIT",
   "main": "./lib/passport-ldapauth",
   "engines": {
     "node": ">=0.8.0"
@@ -33,12 +30,12 @@
   },
   "dependencies": {
     "passport-strategy": "1.x.x",
-    "ldapauth-fork": "~2.4.0"
+    "ldapauth-fork": "~2.5.0"
   },
   "devDependencies": {
     "body-parser": "1.14.x",
     "chai": "3.4.x",
-    "express": "4.9.x",
+    "express": "4.13.x",
     "ldapjs": "1.0.x",
     "mocha": "2.3.x",
     "passport": "0.3.x",

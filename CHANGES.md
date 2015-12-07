@@ -1,8 +1,9 @@
 ## Changes
 
+* v0.5.0
+    * Updated deps. ldapauth-fork update changes bind credentials handling to work better with falsy values needed in anonymous bind.
 * v0.4.0
     * Updated ldapauth-fork which updates ldapjs to 1.0.0
-
 * v0.3.1
     * [#35](https://github.com/vesse/passport-ldapauth/issues/35) - Show more specific error messages from Microsoft AD login errors if identified.
 * v0.3.0
