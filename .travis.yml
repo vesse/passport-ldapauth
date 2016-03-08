@@ -7,9 +7,8 @@ branches:
 node_js:
   - "0.12"
   - "0.10"
-  - "4.0"
-  - "4.1"
-  - iojs
+  - "4.3"
+  - stable
 
 notifications:
   email:
