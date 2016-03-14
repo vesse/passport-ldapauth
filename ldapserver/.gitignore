@@ -1,1 +1,4 @@
 .vagrant
+*.retry
+roles/mrlesmithjr.etc-hosts
+roles/mrlesmithjr.openldap
