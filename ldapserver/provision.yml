@@ -1,7 +1,11 @@
 ---
 - name: Provision Vagrant box
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   become: true
+  vars:
+    - openldap_populate: true
   roles:
     - base
+    - mrlesmithjr.etc-hosts
+    - mrlesmithjr.openldap
