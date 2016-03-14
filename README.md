@@ -108,18 +108,6 @@ app.post('/login', passport.authenticate('ldapauth', {session: false}), function
 app.listen(8080);
 ```
 
-Equivalent `ldapsearch` for the above example for testing purposes:
-
-```bash
-ldapsearch \
-  -H ldap://localhost:389 \
-  -x \
-  -D cn=root \
-  -w secret \
-  -b ou=passport-ldapauth \
-  \(uid=<username here>\)
-```
-
 ### Active Directory over SSL example
 
 Simple example config for connecting over `ldaps://` to a server requiring some internal CA certificate (often the case in corporations using Windows AD).
@@ -177,6 +165,22 @@ passport.use(new LdapStrategy(getLDAPConfiguration,
   }
 ));
 ```
+
+## `ldapsearch`
+
+[ldapsearch](http://linux.die.net/man/1/ldapsearch) is a great command line tool for testing your config. The user search query performed in the Express example above when user logging in has uid `john` is the same as the following `ldapsearch` call:
+
+```bash
+ldapsearch \
+  -H ldap://localhost:389 \
+  -x \
+  -D cn=root \
+  -w secret \
+  -b ou=passport-ldapauth \
+  "(uid=john)"
+```
+
+If the query does not return expected user the configuration is likely incorrect.
 
 ## License
 
