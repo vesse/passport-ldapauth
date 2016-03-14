@@ -108,6 +108,18 @@ app.post('/login', passport.authenticate('ldapauth', {session: false}), function
 app.listen(8080);
 ```
 
+Equivalent `ldapsearch` for the above example for testing purposes:
+
+```bash
+ldapsearch \
+  -H ldap://localhost:389 \
+  -x \
+  -D cn=root \
+  -w secret \
+  -b ou=passport-ldapauth \
+  \(uid=<username here>\)
+```
+
 ### Active Directory over SSL example
 
 Simple example config for connecting over `ldaps://` to a server requiring some internal CA certificate (often the case in corporations using Windows AD).
