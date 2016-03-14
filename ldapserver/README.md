@@ -18,7 +18,7 @@ ldapsearch \
 
 ## Manage
 
-Go to http://localhost:8080/phpldapadmin and login with
+Go to [`http://localhost:8080/phpldapadmin`](http://localhost:8080/phpldapadmin) and login with
 
 ```
 user: cn=admin,dc=example,dc=org
