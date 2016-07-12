@@ -118,7 +118,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it.only("should allow access with valid credentials in the header", function(cb) {
+    it("should allow access with valid credentials in the header", function(cb) {
       request(expressapp)
         .post('/login')
         .set('Authorization', 'Basic dmFsaWQ6dmFsaWQ=')
