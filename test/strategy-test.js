@@ -297,15 +297,12 @@ describe("LDAP authentication strategy", function() {
   });
 
   describe("with group fetch settings defined", function() {
-    var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
-    OPTS.server.groupSearchBase = 'ou=passport-ldapauth';
-    OPTS.server.groupSearchScope = 'sub';
-    OPTS.server.groupSearchFilter = '(member={{dn}})';
+    var OPTS;
 
-    it("should return groups for user", function(cb) {
-      start_servers(OPTS, BASE_TEST_OPTS)(function() {
+    var groupTest = function(opts, cb) {
+      start_servers(opts, BASE_TEST_OPTS)(function() {
         var req = {body: {username: 'valid', password: 'valid'}},
-            s   = new LdapStrategy(OPTS, function(user, done) {
+            s   = new LdapStrategy(opts, function(user, done) {
               req.should.have.keys('body');
               req.body.should.have.keys(['username', 'password']);
               done(null, user);
@@ -322,6 +319,27 @@ describe("LDAP authentication strategy", function() {
 
         s.authenticate(req);
       });
+    }
+
+    beforeEach(function(cb) {
+      OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+      OPTS.server.groupSearchBase = 'ou=passport-ldapauth';
+      OPTS.server.groupSearchScope = 'sub';
+      cb();
+    });
+
+    afterEach(stop_servers);
+
+    it("should return groups for user with string filter", function(cb) {
+      OPTS.server.groupSearchFilter = '(member={{dn}})';
+      groupTest(OPTS, cb);
+    });
+
+    it("should return groups for user with function filter", function(cb) {
+      OPTS.server.groupSearchFilter = function(user) {
+        return '(member={{dn}})'.replace(/{{dn}}/, user.dn)
+      };
+      groupTest(OPTS, cb);
     });
   });
 
