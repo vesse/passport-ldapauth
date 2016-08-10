@@ -4,7 +4,7 @@
 
 ```bash
 ansible-galaxy install -r requirements.yml
-ansible up
+vagrant up
 ```
 
 ## Test
