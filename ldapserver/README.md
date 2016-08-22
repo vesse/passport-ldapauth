@@ -24,3 +24,7 @@ Go to [`http://localhost:8080/phpldapadmin`](http://localhost:8080/phpldapadmin)
 user: cn=admin,dc=example,dc=org
 password: P@55w0rd
 ```
+
+## Use
+
+There's a user `uid=john` in `ou=People,dc=example,dc=org` with password `P@55w0rd`.
