@@ -29,8 +29,9 @@
     "url": "https://github.com/vesse/passport-ldapauth/issues"
   },
   "dependencies": {
-    "passport-strategy": "1.x.x",
-    "ldapauth-fork": "~2.5.0"
+    "atob": "^2.0.3",
+    "ldapauth-fork": "~2.5.0",
+    "passport-strategy": "1.x.x"
   },
   "devDependencies": {
     "body-parser": "1.15.x",
