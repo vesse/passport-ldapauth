@@ -1,6 +1,7 @@
 var should       = require('chai').Should(),
     LdapStrategy = require('passport-ldapauth'),
     request      = require('supertest'),
+    basicAuth    = require('basic-auth'),
     ldapserver   = require('./ldapserver'),
     appserver    = require('./appserver');
 
@@ -206,6 +207,19 @@ describe("LDAP authentication strategy", function() {
         };
 
         s.authenticate(req);
+      });
+    });
+
+    it("should allow access with valid credentials in the header", function(cb) {
+      var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+      OPTS.credentialsLookup = basicAuth;
+
+      start_servers(OPTS, BASE_TEST_OPTS)(function() {
+        request(expressapp)
+          .post('/login')
+          .set('Authorization', 'Basic dmFsaWQ6dmFsaWQ=')
+          .expect(200)
+          .end(cb);
       });
     });
   });

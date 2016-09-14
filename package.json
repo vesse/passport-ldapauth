@@ -33,6 +33,7 @@
     "ldapauth-fork": "~2.5.0"
   },
   "devDependencies": {
+    "basic-auth": "1.0.x",
     "body-parser": "1.15.x",
     "chai": "3.5.x",
     "express": "4.14.x",

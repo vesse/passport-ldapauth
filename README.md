@@ -42,6 +42,7 @@ passport.use(new LdapStrategy({
     * `tlsOptions`: Optional object with options accepted by Node.js [tls](http://nodejs.org/api/tls.html#tls_tls_connect_options_callback) module.
 * `usernameField`: Field name where the username is found, defaults to _username_
 * `passwordField`: Field name where the password is found, defaults to _password_
+* `creadentialsLookup`: Optional, synchronous function that provides the login credentials from `req`. See [below](#credentials-lookup) for more.
 * `passReqToCallback`: When `true`, `req` is the first argument to the verify callback (default: `false`):
 
         passport.use(new LdapStrategy(..., function(req, user, done) {
@@ -131,6 +132,18 @@ var opts = {
   }
 };
 ...
+```
+<a name="credentials-lookup">
+## `credentialsLookup`
+
+A synchronous function that receives the `req` object and returns an objec with keys `username` and `password` (or `name` and `pass`) can be provided. Note, that when this is provided the default lookup is not performed. This can be used to eg. enable basic auth header support:
+
+```javascript
+var basicAuth = require('basic-auth');
+var ldapOpts = {
+  server: { ... },
+  credentialsLookup: basicAuth
+}
 ```
 
 <a name="options-as-function"></a>

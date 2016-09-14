@@ -1,5 +1,7 @@
 ## Changes
 
+* v0.6.0
+    * Added option `credentialsLookup` that can be used eg. to add Basic Auth header parsing support.
 * v0.5.0
     * Updated deps. ldapauth-fork update changes bind credentials handling to work better with falsy values needed in anonymous bind.
 * v0.4.0
