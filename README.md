@@ -16,6 +16,7 @@ npm install passport-ldapauth
 
 [![Build Status](https://travis-ci.org/vesse/passport-ldapauth.png)](https://travis-ci.org/vesse/passport-ldapauth)
 [![Dependency Status](https://gemnasium.com/vesse/passport-ldapauth.png)](https://gemnasium.com/vesse/passport-ldapauth)
+[![npm](https://img.shields.io/npm/dm/passport-ldapauth.svg)](http://npmjs.com/package/passport-ldapauth)
 
 ## Usage
 
