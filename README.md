@@ -1,22 +1,18 @@
 # passport-ldapauth
 
-[Passport](http://passportjs.org/) authentication strategy against LDAP server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork)
+[![Build Status](https://travis-ci.org/vesse/passport-ldapauth.svg)](https://travis-ci.org/vesse/passport-ldapauth)
+[![Dependency Status](https://gemnasium.com/vesse/passport-ldapauth.svg)](https://gemnasium.com/vesse/passport-ldapauth)
+[![npm](https://img.shields.io/npm/dm/passport-ldapauth.svg)](http://npmjs.com/package/passport-ldapauth)
 
-### Microsoft AD LDAP protocol
 
-Error 49 handles much more than just Invalid credentials, partial support for MS AD LDAP has been implemented (see [issue #35](https://github.com/vesse/passport-ldapauth/issues/35)).  Any additional supported data/comments could be added in the future.
+
+[Passport](http://passportjs.org/) authentication strategy against LDAP / AD server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork).
 
 ## Install
 
 ```
 npm install passport-ldapauth
 ```
-
-## Status
-
-[![Build Status](https://travis-ci.org/vesse/passport-ldapauth.svg)](https://travis-ci.org/vesse/passport-ldapauth)
-[![Dependency Status](https://gemnasium.com/vesse/passport-ldapauth.svg)](https://gemnasium.com/vesse/passport-ldapauth)
-[![npm](https://img.shields.io/npm/dm/passport-ldapauth.svg)](http://npmjs.com/package/passport-ldapauth)
 
 ## Usage
 
