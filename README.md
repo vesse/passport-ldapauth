@@ -8,6 +8,8 @@
 
 [Passport](http://passportjs.org/) authentication strategy against LDAP / AD server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork).
 
+This module lets you authenticate using LDAP or AD in your Node.js applications. By plugging into Passport, LDAP authentication can be integrated into any framework that supports Connect-style middleware.
+
 ## Install
 
 ```
