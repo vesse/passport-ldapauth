@@ -5,7 +5,7 @@ var should       = require('chai').Should(),
     ldapserver   = require('./ldapserver'),
     appserver    = require('./appserver');
 
-var LDAP_PORT = 1389;
+var LDAP_PORT = 1399;
 
 var expressapp = null;
 
@@ -42,16 +42,16 @@ var stop_servers = function(cb) {
   });
 };
 
-describe("LDAP authentication strategy", function() {
+describe('LDAP authentication strategy', function() {
 
-  describe("by itself", function() {
+  describe('by itself', function() {
 
-    it("should export Strategy constructor directly", function(cb) {
+    it('should export Strategy constructor directly', function(cb) {
       require('passport-ldapauth').should.be.a('function');
       cb();
     });
 
-    it("should export Strategy constructor separately as well", function(cb) {
+    it('should export Strategy constructor separately as well', function(cb) {
       var strategy = require('passport-ldapauth').Strategy;
       strategy.should.be.a('function');
       (function() {
@@ -60,20 +60,20 @@ describe("LDAP authentication strategy", function() {
       cb();
     });
 
-    it("should be named ldapauth", function(cb) {
+    it('should be named ldapauth', function(cb) {
       var s = new LdapStrategy(BASE_OPTS);
       s.name.should.equal('ldapauth');
       cb();
     });
 
-    it("should throw an error if no arguments are provided", function(cb) {
+    it('should throw an error if no arguments are provided', function(cb) {
       (function() {
         new LdapStrategy();
       }).should.throw(Error);
       cb();
     });
 
-    it("should throw an error if options are not accepted by ldapauth", function(cb) {
+    it('should throw an error if options are not accepted by ldapauth', function(cb) {
       var s = new LdapStrategy({}, function() {});
       (function() {
         s.authenticate({body: {username: 'valid', password: 'valid'}});
@@ -81,7 +81,7 @@ describe("LDAP authentication strategy", function() {
       cb();
     });
 
-    it("should initialize without a verify callback", function(cb) {
+    it('should initialize without a verify callback', function(cb) {
       (function() {
         new LdapStrategy({server: {}})
       }).should.not.throw(Error);
@@ -90,13 +90,13 @@ describe("LDAP authentication strategy", function() {
 
   });
 
-  describe("with basic settings", function() {
+  describe('with basic settings', function() {
 
     before(start_servers(BASE_OPTS, BASE_TEST_OPTS));
 
     after(stop_servers);
 
-    it("should return unauthorized if credentials are not given", function(cb) {
+    it('should return unauthorized if credentials are not given', function(cb) {
       request(expressapp)
         .post('/login')
         .send({})
@@ -104,7 +104,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should allow access with valid credentials", function(cb) {
+    it('should allow access with valid credentials', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
@@ -112,14 +112,14 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should allow access with valid credentials in query string", function(cb) {
+    it('should allow access with valid credentials in query string', function(cb) {
       request(expressapp)
         .post('/login?username=valid&password=valid')
         .expect(200)
         .end(cb);
     });
 
-    it("should return unauthorized with invalid credentials", function(cb) {
+    it('should return unauthorized with invalid credentials', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'invalid'})
@@ -127,7 +127,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should return unauthorized with non-existing user", function(cb) {
+    it('should return unauthorized with non-existing user', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'nonexisting', password: 'invalid'})
@@ -135,7 +135,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should return more specific flash message for AD reply", function(cb) {
+    it('should return more specific flash message for AD reply', function(cb) {
       request(expressapp)
         .post('/custom-cb-login')
         .send({username: 'ms-ad', password: 'invalid'})
@@ -148,12 +148,12 @@ describe("LDAP authentication strategy", function() {
     });
   });
 
-  describe("without a verify callback", function() {
+  describe('without a verify callback', function() {
     before(start_servers(BASE_OPTS, {no_callback: true}));
 
     after(stop_servers);
 
-    it("should still authenticate", function(cb) {
+    it('should still authenticate', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
@@ -161,7 +161,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should reject invalid event", function(cb) {
+    it('should reject invalid event', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'invalid'})
@@ -170,11 +170,11 @@ describe("LDAP authentication strategy", function() {
     });
   });
 
-  describe("with optional options", function() {
+  describe('with optional options', function() {
 
     afterEach(stop_servers);
 
-    it("should read given fields instead of defaults", function(cb) {
+    it('should read given fields instead of defaults', function(cb) {
       var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
       OPTS.usernameField = 'ldapuname';
       OPTS.passwordField = 'ldappwd';
@@ -188,7 +188,7 @@ describe("LDAP authentication strategy", function() {
       });
     });
 
-    it("should pass request to verify callback if defined so", function(cb) {
+    it('should pass request to verify callback if defined so', function(cb) {
       var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
       OPTS.passReqToCallback = true;
 
@@ -206,11 +206,13 @@ describe("LDAP authentication strategy", function() {
           cb();
         };
 
+        s.error = function() {}; // Just to have this when not run via passport
+
         s.authenticate(req);
       });
     });
 
-    it("should allow access with valid credentials in the header", function(cb) {
+    it('should allow access with valid credentials in the header', function(cb) {
       var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
       OPTS.credentialsLookup = basicAuth;
 
@@ -224,7 +226,7 @@ describe("LDAP authentication strategy", function() {
     });
   });
 
-  describe("with options as function", function() {
+  describe('with options as function', function() {
     var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
     OPTS.usernameField = 'cb_uname';
     OPTS.passwordField = 'cb_pwd';
@@ -238,7 +240,7 @@ describe("LDAP authentication strategy", function() {
     before(start_servers(opts, BASE_TEST_OPTS));
     after(stop_servers);
 
-    it("should use the options returned from the function", function(cb) {
+    it('should use the options returned from the function', function(cb) {
       request(expressapp)
         .post('/login')
         .send({cb_uname: 'valid', cb_pwd: 'valid'})
@@ -246,7 +248,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should not allow login if using wrong fields", function(cb) {
+    it('should not allow login if using wrong fields', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
@@ -255,7 +257,7 @@ describe("LDAP authentication strategy", function() {
     });
   });
 
-  describe("with options as function returning dynamic sets", function() {
+  describe('with options as function returning dynamic sets', function() {
     var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
     OPTS.usernameField = 'first_uname';
     OPTS.passwordField = 'first_pwd';
@@ -277,7 +279,7 @@ describe("LDAP authentication strategy", function() {
     before(start_servers(opts, BASE_TEST_OPTS));
     after(stop_servers);
 
-    it("should use the first set options returned from the function", function(cb) {
+    it('should use the first set options returned from the function', function(cb) {
       request(expressapp)
         .post('/login')
         .send({first_uname: 'valid', first_pwd: 'valid', set: 'first'})
@@ -285,7 +287,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should not allow first set login if using wrong fields", function(cb) {
+    it('should not allow first set login if using wrong fields', function(cb) {
       request(expressapp)
         .post('/login')
         .send({second_uname: 'valid', second_pwd: 'valid', set: 'first'})
@@ -293,7 +295,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should use the second set options returned from the function", function(cb) {
+    it('should use the second set options returned from the function', function(cb) {
       request(expressapp)
         .post('/login')
         .send({second_uname: 'valid', second_pwd: 'valid', set: 'second'})
@@ -301,7 +303,7 @@ describe("LDAP authentication strategy", function() {
         .end(cb);
     });
 
-    it("should not allow second set login if using wrong fields", function(cb) {
+    it('should not allow second set login if using wrong fields', function(cb) {
       request(expressapp)
         .post('/login')
         .send({first_uname: 'valid', first_pwd: 'valid', set: 'second'})
@@ -310,7 +312,7 @@ describe("LDAP authentication strategy", function() {
     });
   });
 
-  describe("with group fetch settings defined", function() {
+  describe('with group fetch settings defined', function() {
     var OPTS;
 
     var groupTest = function(opts, cb) {
@@ -331,6 +333,8 @@ describe("LDAP authentication strategy", function() {
           cb();
         };
 
+        s.error = function() {}; // Just to have this when not run via passport
+
         s.authenticate(req);
       });
     }
@@ -344,12 +348,12 @@ describe("LDAP authentication strategy", function() {
 
     afterEach(stop_servers);
 
-    it("should return groups for user with string filter", function(cb) {
+    it('should return groups for user with string filter', function(cb) {
       OPTS.server.groupSearchFilter = '(member={{dn}})';
       groupTest(OPTS, cb);
     });
 
-    it("should return groups for user with function filter", function(cb) {
+    it('should return groups for user with function filter', function(cb) {
       OPTS.server.groupSearchFilter = function(user) {
         return '(member={{dn}})'.replace(/{{dn}}/, user.dn)
       };
@@ -357,7 +361,7 @@ describe("LDAP authentication strategy", function() {
     });
   });
 
-  describe("with invalid LDAP url", function() {
+  describe('with invalid LDAP url', function() {
     var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
     OPTS.server.url = 'ldap://nonexistingdomain.fi:389';
 
@@ -365,11 +369,11 @@ describe("LDAP authentication strategy", function() {
 
     after(stop_servers);
 
-    xit("should handle the error", function(cb) {
+    it('should handle the error', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
-        .expect(400)
+        .expect(500)
         .end(cb);
     });
   });
