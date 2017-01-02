@@ -383,6 +383,7 @@ describe('LDAP authentication strategy', function() {
 
     it('should return with a failure', function(cb) {
       var callbackCalled = false;
+      var testCompleted = false;
       var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
       OPTS.server.url = 'ldap://nonexistingdomain.fi:389';
       OPTS.handleErrorsAsFailures = true;
@@ -398,7 +399,12 @@ describe('LDAP authentication strategy', function() {
         s.fail = function(msg, code) {
           code.should.equal(500);
           callbackCalled.should.be.true;
-          cb();
+          // There can be more than one event emitted and mocha fails
+          // if callback is called more than once
+          if (testCompleted === false) {
+            testCompleted = true;
+            cb();
+          }
         }
 
         s.error = function() {}; // Just to have this when not run via passport
