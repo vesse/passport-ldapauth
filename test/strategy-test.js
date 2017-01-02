@@ -369,12 +369,42 @@ describe('LDAP authentication strategy', function() {
 
     after(stop_servers);
 
-    it('should handle the error', function(cb) {
+    it('should return with an error', function(cb) {
       request(expressapp)
         .post('/login')
         .send({username: 'valid', password: 'valid'})
         .expect(500)
         .end(cb);
+    });
+  });
+
+  describe('with handleErrorsAsFailures', function() {
+    after(stop_servers);
+
+    it('should return with a failure', function(cb) {
+      var callbackCalled = false;
+      var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+      OPTS.server.url = 'ldap://nonexistingdomain.fi:389';
+      OPTS.handleErrorsAsFailures = true;
+      OPTS.failureErrorCallback = function(err) {
+        should.exist(err);
+        callbackCalled = true;
+      }
+
+      start_servers(OPTS, BASE_TEST_OPTS)(function() {
+        var req = {body: {username: 'valid', password: 'valid'}},
+            s   = new LdapStrategy(OPTS);
+
+        s.fail = function(msg, code) {
+          code.should.equal(500);
+          callbackCalled.should.be.true;
+          cb();
+        }
+
+        s.error = function() {}; // Just to have this when not run via passport
+
+        s.authenticate(req);
+      });
     });
   });
 });
