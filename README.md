@@ -199,4 +199,4 @@ If the query does not return expected user the configuration is likely incorrect
 
 MIT
 
-`passport-ldapauth` has been partially sponsored by [Leonidas Ltd](https://leonidasoy.fi/opensource).
+`passport-ldapauth` has been partially sponsored by [Leonidas Ltd](https://leonidasoy.fi/open-source).
