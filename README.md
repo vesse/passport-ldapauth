@@ -133,7 +133,7 @@ var opts = {
 };
 ...
 ```
-<a name="credentials-lookup">
+
 ## `credentialsLookup`
 
 A synchronous function that receives the `req` object and returns an objec with keys `username` and `password` (or `name` and `pass`) can be provided. Note, that when this is provided the default lookup is not performed. This can be used to eg. enable basic auth header support:
@@ -146,7 +146,6 @@ var ldapOpts = {
 }
 ```
 
-<a name="options-as-function"></a>
 ## Asynchronous configuration retrieval
 
 Instead of providing a static configuration object, you can pass a function as `options` that will take care of fetching the configuration. It will be called with the `req` object and a callback function having the standard `(err, result)` signature. Notice that the provided function will be called on every authenticate request.
