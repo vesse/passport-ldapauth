@@ -40,7 +40,7 @@ passport.use(new LdapStrategy({
     * `tlsOptions`: Optional object with options accepted by Node.js [tls](http://nodejs.org/api/tls.html#tls_tls_connect_options_callback) module.
 * `usernameField`: Field name where the username is found, defaults to _username_
 * `passwordField`: Field name where the password is found, defaults to _password_
-* `credentialsLookup`: Optional, synchronous function that provides the login credentials from `req`. See [below](#credentials-lookup) for more.
+* `credentialsLookup`: Optional, synchronous function that provides the login credentials from `req`. See [below](#credentialslookup) for more.
 * `handleErrorsAsFailures`: When `true`, unknown errors and ldapjs emitted errors are handled as authentication failures instead of errors (default: `false`).
 * `failureErrorCallback`: Optional, synchronous function that is called with the received error when `handleErrorsAsFailures` is enabled.
 * `passReqToCallback`: When `true`, `req` is the first argument to the verify callback (default: `false`):
@@ -51,7 +51,7 @@ passport.use(new LdapStrategy({
           }
         ));
 
-Note: you can pass a function instead of an object as `options`, see the [example below](#options-as-function)
+Note: you can pass a function instead of an object as `options`, see the [example below](#asynchronous-configuration-retrieval)
 
 ### Authenticate requests
 
