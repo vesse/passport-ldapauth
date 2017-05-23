@@ -2,6 +2,8 @@
 
 **NOTE:** Not working anymore, latest `slapd` apparently does not create the example DN and thus `mrlesmithjr.openldap` playbook fails.
 
+If you wish to get the box up and running, install `slapd`, `ldap-utils`, and `phpldapadmin` manually. Then run `dpkg-reconfigure slapd` and configure the server. Use `example.org` in the domain, eg. `org` in the organization, and `P@55w0rd` as password. Then remove the tasks from `debian.yml` of `mrlesmithjr.openldap`, and run `vagrant provision`.
+
 ## Install
 
 ```bash
