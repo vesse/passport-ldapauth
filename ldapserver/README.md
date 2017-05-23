@@ -1,5 +1,7 @@
 # LDAP test server
 
+**NOTE:** Not working anymore, latest `slapd` apparently does not create the example DN and thus `mrlesmithjr.openldap` playbook fails.
+
 ## Install
 
 ```bash
