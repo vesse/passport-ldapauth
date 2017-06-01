@@ -1,6 +1,6 @@
 ## Changes
 
-# v1.0.0
+* v1.0.0
     * `ldapauth-fork` is now an event emitter. Emitted errors will cause authentication error.
     * [#38](https://github.com/vesse/passport-ldapauth/pull/38) Added option to handle erros as failures with `handleErrorsAsFailures`. Additionally a *synchronous* `failureErrorCallback` function that receives the error as argument can be provided.
 * v0.6.0

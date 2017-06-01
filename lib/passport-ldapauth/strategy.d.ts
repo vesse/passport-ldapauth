@@ -30,6 +30,11 @@ declare namespace Strategy {
     type CredentialsLookup = (req: IncomingMessage) => CredentialsLookupResult;
 
     /**
+     * Callback notified of an error when errors are handled as failures
+     */
+    type FailureErrorCallback = (err: any) => void;
+
+    /**
      * passport-ldapauth options
      */
     interface Options {
@@ -53,6 +58,14 @@ declare namespace Strategy {
          * Credentials lookup function to be used instead of default search from request
          */
         credentialsLookup?: CredentialsLookup;
+        /**
+         * Set to true to handle errors as login failures
+         */
+        handleErrorsAsFailures?: boolean;
+        /**
+         * Synchronous failure error callback for handling the failure if using handleErrorsAsFailures
+         */
+        failureErrorCallback?: FailureErrorCallback;
     }
 
     type OptionsFunctionCallback = (error: any, options: Options) => void;
