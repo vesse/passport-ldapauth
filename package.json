@@ -19,6 +19,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "./lib/passport-ldapauth",
+  "types": "./lib/passport-ldapauth/strategy.d.ts",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -30,8 +31,9 @@
     "url": "https://github.com/vesse/passport-ldapauth/issues"
   },
   "dependencies": {
-    "passport-strategy": "^1.0.0",
-    "ldapauth-fork": "^4.0.0"
+    "@types/express": "^4.0.35",
+    "ldapauth-fork": "^4.0.0",
+    "passport-strategy": "^1.0.0"
   },
   "devDependencies": {
     "basic-auth": "^1.1.0",
