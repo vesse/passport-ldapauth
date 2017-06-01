@@ -1,6 +1,15 @@
+// Type definitions for passport-ldapauth 2.0
+// Project: https://github.com/vesse/passport-ldapauth
+// Definitions by: Vesa Poikajärvi <https://github.com/vesse>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+// TypeScript Version: 2.1
+
 import { Request } from 'express';
 import { Options as LdapAuthOptions } from 'ldapauth-fork';
-import { Strategy as PassportStrategy, AuthenticateOptions } from 'passport';
+import {
+    Strategy as PassportStrategy,
+    AuthenticateOptions as PassportAuthenticateOptions
+} from 'passport';
 
 declare namespace Strategy {
     /**
@@ -32,7 +41,7 @@ declare namespace Strategy {
     /**
      * Flash message localizations for authenticate
      */
-    interface AuthenticateOptions extends AuthenticateOptions {
+    interface AuthenticateOptions extends PassportAuthenticateOptions {
         badRequestMessage?: string;
         invalidCredentials?: string;
         userNotFound?: string;
@@ -40,7 +49,6 @@ declare namespace Strategy {
         invalidLogonHours?: string;
         invalidWorkstation?: string;
         passwordExpired?: string;
-        accountDisabled?: string;
         accountDisabled?: string;
         accountExpired?: string;
         passwordMustChange?: string;
