@@ -4,7 +4,9 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.1
 
-import { Request } from 'express';
+/// <reference types="node"/>
+
+import { IncomingMessage } from 'http';
 import { Options as LdapAuthOptions } from 'ldapauth-fork';
 import {
     Strategy as PassportStrategy,
@@ -12,6 +14,21 @@ import {
 } from 'passport';
 
 declare namespace Strategy {
+    /**
+     * Return value type for credentialsLookup
+     */
+    interface CredentialsLookupResult {
+        username?: string;
+        password?: string;
+        user?: string;
+        pass?: string;
+    }
+
+    /**
+     * Credentials lookup function (eg. basic-auth)
+     */
+    type CredentialsLookup = (req: IncomingMessage) => CredentialsLookupResult;
+
     /**
      * passport-ldapauth options
      */
@@ -32,11 +49,15 @@ declare namespace Strategy {
          * If set to true, request is passed to verify callback
          */
         passReqToCallback?: boolean;
+        /**
+         * Credentials lookup function to be used instead of default search from request
+         */
+        credentialsLookup?: CredentialsLookup;
     }
 
     type OptionsFunctionCallback = (error: any, options: Options) => void;
 
-    type OptionsFunction = (req: Request, callback: OptionsFunctionCallback) => void;
+    type OptionsFunction = (req: IncomingMessage, callback: OptionsFunctionCallback) => void;
 
     /**
      * Flash message localizations for authenticate
@@ -74,7 +95,7 @@ declare namespace Strategy {
     /**
      * Verify callback when passReqToCallback = true
      */
-    type VerifyCallbackWithRequest = (req: Request, user: any, callback: VerifyDoneCallback) => void;
+    type VerifyCallbackWithRequest = (req: IncomingMessage, user: any, callback: VerifyDoneCallback) => void;
 }
 
 declare class Strategy implements PassportStrategy {
@@ -93,7 +114,7 @@ declare class Strategy implements PassportStrategy {
      * @param req
      * @param options
      */
-    authenticate(req: Request, options?: Strategy.AuthenticateOptions): void;
+    authenticate(req: IncomingMessage, options?: Strategy.AuthenticateOptions): void;
 }
 
 export = Strategy;

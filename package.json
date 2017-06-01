@@ -31,7 +31,8 @@
     "url": "https://github.com/vesse/passport-ldapauth/issues"
   },
   "dependencies": {
-    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.23",
+    "@types/passport": "^0.3.3",
     "ldapauth-fork": "^4.0.0",
     "passport-strategy": "^1.0.0"
   },
