@@ -30,20 +30,25 @@
     "url": "https://github.com/vesse/passport-ldapauth/issues"
   },
   "dependencies": {
-    "passport-strategy": "1.x.x",
-    "ldapauth-fork": "~3.0.0"
+    "passport-strategy": "^1.0.0",
+    "ldapauth-fork": "^4.0.0"
   },
   "devDependencies": {
-    "basic-auth": "1.1.x",
-    "body-parser": "1.15.x",
-    "chai": "3.5.x",
-    "express": "4.14.x",
-    "ldapjs": "1.0.x",
-    "mocha": "3.2.x",
-    "passport": "0.3.x",
-    "supertest": "2.0.x"
+    "basic-auth": "^1.1.0",
+    "body-parser": "^1.17.2",
+    "chai": "^4.0.1",
+    "eslint": "^3.19.0",
+    "express": "^4.15.3",
+    "ldapjs": "^1.0.1",
+    "mocha": "^3.4.2",
+    "passport": "^0.3.2",
+    "supertest": "^3.0.0",
+    "watch": "^1.0.2"
   },
   "scripts": {
+    "prepublish": "npm run lint",
+    "lint": "eslint ./lib",
+    "lint:watch": "watch 'npm run lint' ./lib --wait 0.5",
     "test": "NODE_PATH=lib mocha --reporter spec test/*-test.js"
   }
 }
