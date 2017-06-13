@@ -3,4 +3,4 @@ ldapserver
 out
 tmp
 .travis.yml
-
+.eslintrc.json
