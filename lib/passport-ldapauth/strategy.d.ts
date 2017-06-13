@@ -1,7 +1,6 @@
 // Type definitions for passport-ldapauth 2.0
 // Project: https://github.com/vesse/passport-ldapauth
 // Definitions by: Vesa Poikajärvi <https://github.com/vesse>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.1
 
 /// <reference types="node"/>
