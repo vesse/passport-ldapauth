@@ -3,3 +3,5 @@ npm-debug.log
 .directory
 .idea/
 out
+tmp
+test/typescript/*.js*
