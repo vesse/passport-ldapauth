@@ -68,8 +68,14 @@ declare namespace Strategy {
         failureErrorCallback?: FailureErrorCallback;
     }
 
+    /**
+     * Callback function returning the options if using OptionsFunction
+     */
     type OptionsFunctionCallback = (error: any, options: Options) => void;
 
+    /**
+     * Callback for getting options dunamically for every authenticate call
+     */
     type OptionsFunction = (req: IncomingMessage, callback: OptionsFunctionCallback) => void;
 
     /**
@@ -97,7 +103,11 @@ declare namespace Strategy {
     }
 
     /**
-     * Callback executed by caller in the verify function
+     * Callback executed in the verify function once done
+     *
+     * @param error Possible error, setting this will result in error from Passport
+     * @param user The user object, or false if there was no error but the authentication should be failed
+     * @param options
      */
     type VerifyDoneCallback = (error: any, user?: any, options?: VerifyOptions) => void;
 
@@ -105,6 +115,7 @@ declare namespace Strategy {
      * Verify callback when passReqToCallback = false
      */
     type VerifyCallback = (user: any, callback: VerifyDoneCallback) => void;
+
     /**
      * Verify callback when passReqToCallback = true
      */
@@ -113,8 +124,8 @@ declare namespace Strategy {
 
 declare class Strategy implements PassportStrategy {
     /**
-     * @param options
-     * @param verify
+     * @param options Strategy options or function returning the options
+     * @param verify User provided verify callback for checking the LDAP result
      */
     constructor(options: Strategy.Options | Strategy.OptionsFunction, verify?: Strategy.VerifyCallback | Strategy.VerifyCallbackWithRequest);
 
