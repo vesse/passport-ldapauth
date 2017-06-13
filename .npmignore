@@ -1,2 +1,6 @@
 .directory
 ldapserver
+out
+tmp
+.travis.yml
+
