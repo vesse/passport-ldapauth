@@ -1,5 +1,8 @@
 ## Changes
 
+* v2.0.0
+    * `ldapauth-fork` major version update now uses Bunyan logger
+    * Added TypeScript type definitions
 * v1.0.0
     * `ldapauth-fork` is now an event emitter. Emitted errors will cause authentication error.
     * [#38](https://github.com/vesse/passport-ldapauth/pull/38) Added option to handle erros as failures with `handleErrorsAsFailures`. Additionally a *synchronous* `failureErrorCallback` function that receives the error as argument can be provided.
