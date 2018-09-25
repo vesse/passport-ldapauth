@@ -92,6 +92,7 @@ declare namespace Strategy {
         accountExpired?: string;
         passwordMustChange?: string;
         accountLockedOut?: string;
+        noSuchObject?: string;
     }
 
     /**
