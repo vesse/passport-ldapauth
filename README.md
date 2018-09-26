@@ -62,7 +62,8 @@ Use `passport.authenticate()`, specifying the `'ldapauth'` strategy, to authenti
 In addition to [default authentication options](http://passportjs.org/guide/authenticate/) the following flash message options are available for `passport.authenticate()`:
 
  * `badRequestMessage`: missing username/password (default: 'Missing credentials')
- * `invalidCredentials`: `InvalidCredentialsError`, `NoSuchObjectError`, and `/no such user/i` LDAP errors (default: 'Invalid username/password')
+ * `invalidCredentials`: `InvalidCredentialsError` and `/no such user/i` LDAP errors (default: 'Invalid username/password')
+ * `noSuchObject`: `NoSuchObjectError` LDAP errors (default: 'Bad search base')
  * `userNotFound`: LDAP returns no error but also no user (default: 'Invalid username/password')
  * `constraintViolation`: user account is locked (default: 'Exceeded password retry limit, account locked')
 
