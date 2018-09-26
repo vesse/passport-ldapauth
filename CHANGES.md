@@ -1,5 +1,8 @@
 ## Changes
 
+* v2.1.0
+    * [#77](https://github.com/vesse/passport-ldapauth/pull/77) Add `noSuchObject` error message
+
 * v2.0.0
     * `ldapauth-fork` major version update now uses Bunyan logger
     * Added TypeScript type definitions
