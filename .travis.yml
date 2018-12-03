@@ -5,11 +5,9 @@ branches:
     - master
 
 node_js:
-  - "4.3"
   - "6.10"
   - "7.10"
-  - "8.0"
-  - stable
+  - "8.10"
 
 notifications:
   email:
