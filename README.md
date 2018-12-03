@@ -17,6 +17,8 @@ npm install passport-ldapauth
 
 ## Usage
 
+**Important note:** LDAP client unbind does not work on Node 10. This may leave connections in weird state. See [joyent/node-ldapjs#483](https://github.com/joyent/node-ldapjs/issues/483) for more information.
+
 ### Configure strategy
 
 ```javascript
