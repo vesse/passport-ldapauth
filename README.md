@@ -1,7 +1,6 @@
 # passport-ldapauth
 
 [![Build Status](https://travis-ci.org/vesse/passport-ldapauth.svg)](https://travis-ci.org/vesse/passport-ldapauth)
-[![Dependency Status](https://gemnasium.com/vesse/passport-ldapauth.svg)](https://gemnasium.com/vesse/passport-ldapauth)
 [![npm](https://img.shields.io/npm/dm/passport-ldapauth.svg)](http://npmjs.com/package/passport-ldapauth)
 [![Sponsored by Leonidas](https://img.shields.io/badge/sponsored%20by-leonidas-389fc1.svg)](https://leonidasoy.fi/open-source)
 
