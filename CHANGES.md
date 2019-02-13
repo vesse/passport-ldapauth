@@ -1,5 +1,7 @@
 ## Changes
 
+* v2.1.2
+    * [#80](https://github.com/vesse/passport-ldapauth/pull/80) Run error handler only once since the a new LdapAuth instance is created for every authenticate request.
 * v2.1.1
     * Bump deps
 * v2.1.0
