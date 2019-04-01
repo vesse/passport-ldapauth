@@ -42,6 +42,7 @@ passport.use(new LdapStrategy({
 * `usernameField`: Field name where the username is found, defaults to _username_
 * `passwordField`: Field name where the password is found, defaults to _password_
 * `credentialsLookup`: Optional, synchronous function that provides the login credentials from `req`. See [below](#credentialslookup) for more.
+* `missingCredentialsStatus`: Returned HTTP status code when credentials could not be found in the request. Defaults to _400_
 * `handleErrorsAsFailures`: When `true`, unknown errors and ldapjs emitted errors are handled as authentication failures instead of errors (default: `false`).
 * `failureErrorCallback`: Optional, synchronous function that is called with the received error when `handleErrorsAsFailures` is enabled.
 * `passReqToCallback`: When `true`, `req` is the first argument to the verify callback (default: `false`):
