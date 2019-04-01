@@ -224,6 +224,18 @@ describe('LDAP authentication strategy', function() {
           .end(cb);
       });
     });
+
+    it('should support returning a custom status code when credentials are missing', function(cb) {
+      var OPTS = JSON.parse(JSON.stringify(BASE_OPTS));
+      OPTS.missingCredentialsStatus = 401;
+
+      start_servers(OPTS, BASE_TEST_OPTS)(function() {
+        request(expressapp)
+          .post('/login')
+          .expect(401)
+          .end(cb);
+      });
+    });
   });
 
   describe('with options as function', function() {
