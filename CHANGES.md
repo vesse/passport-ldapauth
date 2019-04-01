@@ -1,5 +1,6 @@
 ## Changes
-
+* v2.1.3
+    * [#86](https://github.com/vesse/passport-ldapauth/pull/86) Allow configuring missing credentials response status.
 * v2.1.2
     * [#80](https://github.com/vesse/passport-ldapauth/pull/80) Run error handler only once since the a new LdapAuth instance is created for every authenticate request.
 * v2.1.1
