@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vesse/passport-ldapauth.svg)](https://travis-ci.org/vesse/passport-ldapauth)
 [![npm](https://img.shields.io/npm/dm/passport-ldapauth.svg)](http://npmjs.com/package/passport-ldapauth)
-[![Sponsored by Leonidas](https://img.shields.io/badge/sponsored%20by-leonidas-389fc1.svg)](https://leonidasoy.fi/open-source)
+[![Sponsored by Wakeone](https://img.shields.io/badge/sponsored%20by-wakeone-389fc1.svg)](https://wakeone.co)
 
 [Passport](http://passportjs.org/) authentication strategy against LDAP / AD server. This module is a Passport strategy wrapper for [ldapauth-fork](https://github.com/vesse/node-ldapauth-fork).
 
@@ -201,4 +201,4 @@ If the query does not return expected user the configuration is likely incorrect
 
 MIT
 
-`passport-ldapauth` has been partially sponsored by [Leonidas Ltd](https://leonidasoy.fi/open-source).
+`passport-ldapauth` has been partially sponsored by [Wakeone Ltd](https://wakeone.co/).
