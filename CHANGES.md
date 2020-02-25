@@ -1,4 +1,6 @@
 ## Changes
+* v2.1.4
+    * Allow any version of @types/node
 * v2.1.3
     * [#86](https://github.com/vesse/passport-ldapauth/pull/86) Allow configuring missing credentials response status.
 * v2.1.2
