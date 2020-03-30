@@ -34,7 +34,7 @@
   "dependencies": {
     "@types/node": "*",
     "@types/passport": "^1.0.0",
-    "ldapauth-fork": "^4.3.2",
+    "ldapauth-fork": "next",
     "passport-strategy": "^1.0.0"
   },
   "devDependencies": {
