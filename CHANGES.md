@@ -1,4 +1,7 @@
 ## Changes
+
+* v3.0.0
+    * Update ldapauth-fork to v5 which upgrade ldapjs to v2
 * v2.1.4
     * Allow any version of @types/node
 * v2.1.3
