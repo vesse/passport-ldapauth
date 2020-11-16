@@ -9,7 +9,7 @@ var server = null;
 
 db = {
   'valid': {
-    dn: 'cn=valid, ou=passport-ldapauth',
+    dn: 'cn=valid,ou=passport-ldapauth',
     attributes:  {
       uid:  'valid',
       name: 'Valid User'

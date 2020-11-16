@@ -32,7 +32,7 @@
     "url": "https://github.com/vesse/passport-ldapauth/issues"
   },
   "dependencies": {
-    "ldapauth-fork": "^5.0.0",
+    "ldapauth-fork": "^5.0.1",
     "passport-strategy": "^1.0.0"
   },
   "devDependencies": {
