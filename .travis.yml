@@ -14,5 +14,3 @@ node_js:
 notifications:
   email:
     - vesa.poikajarvi@iki.fi
-
-sudo: false
