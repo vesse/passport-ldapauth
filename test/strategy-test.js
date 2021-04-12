@@ -425,4 +425,43 @@ describe('LDAP authentication strategy', function() {
       });
     });
   });
+
+  describe('with multiple server URLs', function() {
+    after(stop_servers);
+
+    it('should fail the authentication with an error when all servers fail', function(cb) {
+      var TWO_SERVERS_ALL_FAIL = JSON.parse(JSON.stringify(BASE_OPTS));
+
+      TWO_SERVERS_ALL_FAIL.server.url = [
+        'ldap://255.255.255.255', // Unreachable network
+        'ldap://i.do.not.exist.local:65433' // Non-existing domain
+      ];
+
+      start_servers(TWO_SERVERS_ALL_FAIL, BASE_TEST_OPTS)(function() {
+        request(expressapp)
+          .post('/login')
+          .send({username: 'valid', password: 'valid'})
+          .expect(500)
+          .end(cb);
+      });
+    });
+
+    it('should succeed when a server replies with success', function(cb) {
+      var THREE_SERVERS_LAST_SUCCEEDS = JSON.parse(JSON.stringify(BASE_OPTS));
+
+      THREE_SERVERS_LAST_SUCCEEDS.server.url = [
+        'ldap://255.255.255.255', // Unreachable network
+        'ldap://i.do.not.exist.local:65433', // Non-existing domain
+        'ldap://localhost:' +  LDAP_PORT.toString()
+      ];
+
+      start_servers(THREE_SERVERS_LAST_SUCCEEDS, BASE_TEST_OPTS)(function() {
+        request(expressapp)
+          .post('/login')
+          .send({username: 'valid', password: 'valid'})
+          .expect(200)
+          .end(cb);
+      });
+    });
+  });
 });
