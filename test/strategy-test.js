@@ -324,6 +324,25 @@ describe('LDAP authentication strategy', function() {
     });
   });
 
+  describe('with options as function returning an error', function() {
+    var opts = function(cb) {
+      process.nextTick(function() {
+        cb(new Error('What a terrible failure'));
+      });
+    };
+
+    before(start_servers(opts, BASE_TEST_OPTS));
+    after(stop_servers);
+
+    it('should fail the authentication with an error', function(cb) {
+      request(expressapp)
+        .post('/login')
+        .send({username: 'valid', password: 'valid'})
+        .expect(500)
+        .end(cb);
+    });
+  });
+
   describe('with group fetch settings defined', function() {
     var OPTS;
 
