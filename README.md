@@ -149,6 +149,7 @@ var ldapOpts = {
 ## Asynchronous configuration retrieval
 
 Instead of providing a static configuration object, you can pass a function as `options` that will take care of fetching the configuration. It will be called with the `req` object and a callback function having the standard `(err, result)` signature. Notice that the provided function will be called on every authenticate request.
+If the function returns an error, the authentication request will error out with that error.
 
 ```javascript
 var getLDAPConfiguration = function(req, callback) {
