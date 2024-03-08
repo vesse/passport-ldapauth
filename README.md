@@ -115,6 +115,7 @@ Simple example config for connecting over `ldaps://` to a server requiring some 
 
 ```javascript
 var fs = require('fs');
+var tls = require('tls');
 
 var opts = {
   server: {
@@ -125,9 +126,9 @@ var opts = {
     searchFilter: '(&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))',
     searchAttributes: ['displayName', 'mail'],
     tlsOptions: {
-      ca: [
-        fs.readFileSync('/path/to/root_ca_cert.crt')
-      ]
+      secureContext: tls.createSecureContext({
+        ca: fs.readFileSync('/path/to/root_ca_cert.crt')
+      })
     }
   }
 };
